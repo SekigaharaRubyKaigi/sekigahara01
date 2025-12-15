@@ -6,7 +6,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://regional.rubykaigi.org",
+  site: "https://sekigahararubykaigi.github.io",
   base: "/sekigahara01",
   integrations: [preact(), mdx(), tailwind(),],
 });

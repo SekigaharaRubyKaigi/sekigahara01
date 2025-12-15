@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta property="og:title" content="関ケ原Ruby会議01">
+  <meta property="og:description" content="関ケ原Ruby会議01の公式サイトです。">
+  <meta property="og:url" content="https://regional.rubykaigi.org/sekigahara01/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="関ケ原Ruby会議01">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:image" content="https://regional.rubykaigi.org/sekigahara01/ogp.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="関ケ原Ruby会議01">
+  <meta name="twitter:description" content="関ケ原Ruby会議01の公式サイトです。">
+  <meta name="twitter:image" content="https://regional.rubykaigi.org/sekigahara01/ogp.png">
+  <title>関ケ原Ruby会議01</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .color-blend {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .color-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+    }
+
+    .blob-red-1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #ff0040 0%, #cc0033 100%);
+      top: 10%;
+      left: 5%;
+      animation: float1 25s ease-in-out infinite;
+    }
+
+    .blob-red-2 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, #ff1a55 0%, #dd0044 100%);
+      bottom: 15%;
+      left: 15%;
+      animation: float2 30s ease-in-out infinite;
+    }
+
+    .blob-blue-1 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, #0066ff 0%, #0044cc 100%);
+      top: 20%;
+      right: 10%;
+      animation: float3 28s ease-in-out infinite;
+    }
+
+    .blob-blue-2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, #3377ff 0%, #1155dd 100%);
+      bottom: 10%;
+      right: 20%;
+      animation: float4 32s ease-in-out infinite;
+    }
+
+    .blob-purple-1 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, #8844ff 0%, #6622cc 100%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: float5 20s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      25% {
+        transform: translate(100px, -50px) scale(1.1);
+      }
+
+      50% {
+        transform: translate(200px, 100px) scale(0.9);
+      }
+
+      75% {
+        transform: translate(-50px, 150px) scale(1.05);
+      }
+    }
+
+    @keyframes float2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      25% {
+        transform: translate(-80px, 100px) scale(0.95);
+      }
+
+      50% {
+        transform: translate(120px, -80px) scale(1.1);
+      }
+
+      75% {
+        transform: translate(50px, 50px) scale(0.9);
+      }
+    }
+
+    @keyframes float3 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      25% {
+        transform: translate(-120px, 80px) scale(1.05);
+      }
+
+      50% {
+        transform: translate(-200px, -100px) scale(0.95);
+      }
+
+      75% {
+        transform: translate(80px, -50px) scale(1.1);
+      }
+    }
+
+    @keyframes float4 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      25% {
+        transform: translate(60px, -100px) scale(0.9);
+      }
+
+      50% {
+        transform: translate(-150px, 80px) scale(1.1);
+      }
+
+      75% {
+        transform: translate(-80px, -60px) scale(0.95);
+      }
+    }
+
+    @keyframes float5 {
+
+      0%,
+      100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      }
+
+      25% {
+        transform: translate(-30%, -70%) scale(1.2) rotate(90deg);
+      }
+
+      50% {
+        transform: translate(-70%, -30%) scale(0.8) rotate(180deg);
+      }
+
+      75% {
+        transform: translate(-60%, -60%) scale(1.1) rotate(270deg);
+      }
+    }
+
+    .hero-grid {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100px 100px;
+      animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(100px, 100px);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 2rem;
+      max-width: 1400px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.1rem;
+    }
+
+    .hero-title {
+      font-size: 8rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.05em;
+    }
+
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .btn {
+      padding: 1.2rem 3rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff0040, #0066ff);
+      color: #fff;
+      box-shadow: 0 10px 40px rgba(255, 0, 110, 0.3);
+      cursor: initial;
+    }
+
+    .btn-primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 50px rgba(255, 0, 110, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="color-blend">
+      <div class="color-blob blob-red-1"></div>
+      <div class="color-blob blob-red-2"></div>
+      <div class="color-blob blob-blue-1"></div>
+      <div class="color-blob blob-blue-2"></div>
+      <div class="color-blob blob-purple-1"></div>
+    </div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">2026 • SEKIGAHARA, GIFU</div>
+      <h1 class="hero-title">Sekigahara<br>RubyKaigi<br>01</h1>
+
+      <div class="cta-group">
+        <a href="#" class="btn btn-primary">Coming Soon</a>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

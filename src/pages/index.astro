@@ -1,19 +1,115 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import logoImage from '../assets/main-visual.svg';
+
+// ▼ ニュース機能の読み込み
+import { getCollection } from 'astro:content';
+
+// データを取得
+let latestNews = [];
+try {
+  const allNews = await getCollection('news');
+  const sortedNews = allNews.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  latestNews = sortedNews.slice(0, 3);
+} catch (e) {
+  console.error("News loading failed:", e);
+}
+
+// 日付フォーマット関数
+const formatDate = (date) => {
+  if (!date) return '';
+  return date.toLocaleDateString('ja-JP', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).replace(/\//g, '.'); // 2024/08/05 -> 2024.08.05
+};
 ---
 
-<Layout title="トップページ">
-  
-  <main class="text-center mt-10">
-    <h1 class="text-3xl font-bold text-blue-600">ようこそ！</h1>
-    <p class="mt-4 text-gray-700">
-      ここは index.astro の中身です。<br />
-      文字化けは直りましたか？
-    </p>
-    
-    <div class="mt-8 p-6 bg-green-100 rounded shadow">
+<Layout title="関ケ原Ruby会議01">
+  <div class="w-full px-4 pb-20">
 
+    <div class="text-center py-10 md:py-20">
+      <div class="mx-auto w-80 mb-6 relative">
+        <Image 
+          src={logoImage} 
+          alt="関ケ原Ruby会議01メインビジュアル" 
+          class="w-full h-auto object-contain" 
+        />
+      </div>
+
+      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-[#332F2E]">
+        関ケ原Ruby会議01
+      </h1>
+
+      <p class="text-xl md:text-2xl font-bold mb-6 text-[#332F2E]">
+        2026.05.30(土)
+      </p>
+
+      <a href="https://sekigahara.pref.gifu.lg.jp/guide/#%E6%89%80%E5%9C%A8%E5%9C%B0%E3%83%BB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 font-medium text-base md:text-xl text-[#332F2E] hover:opacity-70 transition-opacity bg-white/60 px-6 py-2 rounded-full border border-[#332F2E]/30"
+      >
+        <span class="material-icons-outlined text-lg md:text-2xl">place</span>
+        岐阜関ケ原古戦場記念館
+      </a>
     </div>
-  </main>
 
+    <section id="about" class="max-w-screen-md mx-auto mb-20">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#B91C1C] tracking-wider font-sans">
+        About
+      </h2>
+      <div class="bg-white/90 p-8 md:p-12 rounded-xl shadow-sm text-lg leading-relaxed text-[#332F2E]">
+        <p class="mb-4">
+          関ケ原Ruby会議01は、天下分け目の地「関ケ原」で開催される地域Ruby会議です。
+        </p>
+        <p>
+          歴史ある古戦場で、新たなRubyの歴史を刻みましょう。
+        </p>
+      </div>
+    </section>
+
+    <section id="news" class="max-w-screen-md mx-auto mb-20">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#B91C1C] tracking-wider font-sans">
+        News
+      </h2>
+
+      <div class="bg-white/90 rounded-xl shadow-sm overflow-hidden">
+        {latestNews.length === 0 ? (
+          <p class="p-8 text-center text-gray-500">現在お知らせはありません。</p>
+        ) : (
+          <div class="divide-y divide-gray-200/50">
+            {latestNews.map((post) => {
+              const href = post.data.externalLink || `/news/${post.slug}`;
+              const isExternal = !!post.data.externalLink;
+              return (
+                <article class="group hover:bg-red-50/50 transition-colors">
+                  <a href={href} target={isExternal ? "_blank" : "_self"} rel={isExternal ? "noopener noreferrer" : ""} class="block p-6">
+                    <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6">
+                      <time class="font-bold text-gray-600 font-sans min-w-[100px]">
+                        {formatDate(post.data.date)}
+                      </time>
+                      <div class="flex-grow font-bold text-[#332F2E] group-hover:text-[#B91C1C] transition-colors flex items-center gap-2">
+                        {post.data.title}
+                        {isExternal && <span class="material-icons-outlined text-sm opacity-50">open_in_new</span>}
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      
+      <div class="text-center mt-8">
+        <a href="/news" class="inline-block border border-[#332F2E] text-[#332F2E] bg-white/80 px-10 py-3 rounded-md font-bold hover:bg-[#332F2E] hover:text-[#C8B66C] transition-colors">
+          もっと見る
+        </a>
+      </div>
+    </section>
+
+  </div>
 </Layout>

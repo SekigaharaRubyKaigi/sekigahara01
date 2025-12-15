@@ -2,6 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import logoImage from '../assets/main-visual.svg';
+import akaKabuto from '../assets/aka-kabutosan.svg';
+import aoKabuto from '../assets/ao-kabutosan.svg';
+import pinBlack from '../assets/pin_black.svg';
 
 // ▼ ニュース機能の読み込み
 import { getCollection } from 'astro:content';
@@ -11,7 +14,12 @@ let latestNews = [];
 try {
   const allNews = await getCollection('news');
   const sortedNews = allNews.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-  latestNews = sortedNews.slice(0, 3);
+  latestNews = await Promise.all(
+    sortedNews.slice(0, 3).map(async (post) => ({
+      ...post,
+      Content: (await post.render()).Content,
+    }))
+  );
 } catch (e) {
   console.error("News loading failed:", e);
 }
@@ -28,7 +36,7 @@ const formatDate = (date) => {
 ---
 
 <Layout title="関ケ原Ruby会議01">
-  <div class="w-full px-4 pb-20">
+  <div class="w-full px-4 pb-1">
 
     <div class="text-center py-10 md:py-20">
       <div class="mx-auto w-80 mb-6 relative">
@@ -43,73 +51,114 @@ const formatDate = (date) => {
         関ケ原Ruby会議01
       </h1>
 
-      <p class="text-xl md:text-2xl font-bold mb-6 text-[#332F2E]">
+      <p class="text-2xl md:text-3xl font-bold mb-6 text-[#332F2E]">
         2026.05.30(土)
       </p>
 
-      <a href="https://sekigahara.pref.gifu.lg.jp/guide/#%E6%89%80%E5%9C%A8%E5%9C%B0%E3%83%BB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center gap-2 font-medium text-base md:text-xl text-[#332F2E] hover:opacity-70 transition-opacity bg-white/60 px-6 py-2 rounded-full border border-[#332F2E]/30"
-      >
-        <span class="material-icons-outlined text-lg md:text-2xl">place</span>
-        岐阜関ケ原古戦場記念館
-      </a>
+      <p class="text-base md:text-xl text-[#332F2E]">
+        会場: <a href="https://sekigahara.pref.gifu.lg.jp/guide/#%E6%89%80%E5%9C%A8%E5%9C%B0%E3%83%BB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:opacity-70 transition-opacity underline"
+        >岐阜関ケ原古戦場記念館</a>
+      </p>
     </div>
 
     <section id="about" class="max-w-screen-md mx-auto mb-20">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#B91C1C] tracking-wider font-sans">
-        About
-      </h2>
-      <div class="bg-white/90 p-8 md:p-12 rounded-xl shadow-sm text-lg leading-relaxed text-[#332F2E]">
-        <p class="mb-4">
-          関ケ原Ruby会議01は、天下分け目の地「関ケ原」で開催される地域Ruby会議です。
-        </p>
-        <p>
-          歴史ある古戦場で、新たなRubyの歴史を刻みましょう。
-        </p>
+      <div class="bg-white/90 p-10 md:p-16 rounded-xl shadow-lg text-[#332F2E]">
+        <div class="mb-8">
+          <h2 class="text-3xl md:text-4xl font-bold text-center tracking-wider font-sans">
+            About
+          </h2>
+          <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+        </div>
+        <div class="text-lg leading-relaxed">
+          <p class="mb-4">
+            関ケ原Ruby会議01は、天下分け目の地「関ケ原」で開催される地域Ruby会議です。
+          </p>
+          <p>
+            歴史ある古戦場で、新たなRubyの歴史を刻みましょう。
+          </p>
+        </div>
       </div>
     </section>
 
     <section id="news" class="max-w-screen-md mx-auto mb-20">
-      <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#B91C1C] tracking-wider font-sans">
-        News
-      </h2>
+      <div class="bg-white/90 p-10 md:p-16 rounded-xl shadow-lg">
+        <div class="mb-8">
+          <h2 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider font-sans">
+            News
+          </h2>
+          <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+        </div>
 
-      <div class="bg-white/90 rounded-xl shadow-sm overflow-hidden">
+      <div class="bg-white rounded-xl overflow-hidden">
         {latestNews.length === 0 ? (
           <p class="p-8 text-center text-gray-500">現在お知らせはありません。</p>
         ) : (
           <div class="divide-y divide-gray-200/50">
             {latestNews.map((post) => {
-              const href = post.data.externalLink || `/news/${post.slug}`;
-              const isExternal = !!post.data.externalLink;
               return (
-                <article class="group hover:bg-red-50/50 transition-colors">
-                  <a href={href} target={isExternal ? "_blank" : "_self"} rel={isExternal ? "noopener noreferrer" : ""} class="block p-6">
+                <article class="p-6">
+                  <div class="flex flex-col gap-4">
                     <div class="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6">
                       <time class="font-bold text-gray-600 font-sans min-w-[100px]">
                         {formatDate(post.data.date)}
                       </time>
-                      <div class="flex-grow font-bold text-[#332F2E] group-hover:text-[#B91C1C] transition-colors flex items-center gap-2">
+                      <h3 class="flex-grow font-bold text-[#332F2E] text-lg md:text-xl leading-[1.5]">
                         {post.data.title}
-                        {isExternal && <span class="material-icons-outlined text-sm opacity-50">open_in_new</span>}
-                      </div>
+                      </h3>
                     </div>
-                  </a>
+                    <div class="text-[#332F2E] text-base leading-[1.8]">
+                      <post.Content />
+                    </div>
+                  </div>
                 </article>
               );
             })}
           </div>
         )}
       </div>
-      
-      <div class="text-center mt-8">
-        <a href="/news" class="inline-block border border-[#332F2E] text-[#332F2E] bg-white/80 px-10 py-3 rounded-md font-bold hover:bg-[#332F2E] hover:text-[#C8B66C] transition-colors">
-          もっと見る
-        </a>
+
+        {/* <div class="text-center mt-8">
+          <a href="/sekigahara01/news" class="inline-block border border-[#332F2E] text-[#332F2E] bg-white/80 px-10 py-3 rounded-md font-bold hover:bg-[#332F2E] hover:text-[#C8B66C] transition-colors">
+            もっと見る
+          </a>
+        </div> */}
       </div>
     </section>
 
+    <div class="flex justify-center items-end gap-12 mt-20 mb-0">
+      <div class="sway-animation">
+        <Image
+          src={akaKabuto}
+          alt="あかかぶとさん"
+          class="w-24 h-24 md:w-32 md:h-32 lg:w-40 md:h-40"
+        />
+      </div>
+      <div class="sway-animation" style="animation-delay: 0.5s;">
+        <Image
+          src={aoKabuto}
+          alt="あおかぶとさん"
+          class="w-24 h-24 md:w-32 md:h-32 lg:w-40 md:h-40"
+        />
+      </div>
+    </div>
+
   </div>
 </Layout>
+
+<style>
+  @keyframes sway {
+    0%, 100% {
+      transform: rotate(-5deg);
+    }
+    50% {
+      transform: rotate(5deg);
+    }
+  }
+
+  .sway-animation {
+    animation: sway 4s ease-in-out infinite;
+  }
+</style>

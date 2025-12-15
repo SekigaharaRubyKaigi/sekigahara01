@@ -27,7 +27,7 @@ const isTopPage = pathname === '/' || pathname === '/sekigahara01/' || pathname 
         <div></div>
       ) : (
         // 下層ページ用：ロゴと文字
-        <a href="/" class="font-bold text-2xl flex items-center gap-2 text-inherit no-underline hover:opacity-70 transition-opacity z-50 relative">
+        <a href="/sekigahara01/" class="font-bold text-2xl flex items-center gap-2 text-inherit no-underline hover:opacity-70 transition-opacity z-50 relative">
           <Image 
             src={logoImage} 
             alt="関ケ原Ruby会議01 ロゴ" 
@@ -38,16 +38,11 @@ const isTopPage = pathname === '/' || pathname === '/sekigahara01/' || pathname 
       )
     }
 
-    {/* <nav class="hidden lg:flex gap-6 font-bold text-[#332F2E]">
-      {navItems.map((item) => (
-        <a href={item.href} class="hover:text-red-700 transition-colors">
-          {item.label}
-        </a>
-      ))}
-    </nav>
-    */}
+    <div class="flex items-center gap-10 z-50">
+      {/* <a href="/sekigahara01/news" class="hidden lg:block font-bold text-[#332F2E] hover:text-[#B91C1C] transition-colors">
+        News
+      </a> */}
 
-    <div class="flex items-center gap-4 z-50">
       <a href="https://x.com/sekigahara01" target="_blank" rel="noopener noreferrer" class="hidden lg:block hover:opacity-70 transition-opacity">
         <Image
           src={xLogo}
@@ -68,16 +63,13 @@ const isTopPage = pathname === '/' || pathname === '/sekigahara01/' || pathname 
   </div>
 
   <nav id="mobile-menu" class="hidden absolute top-0 left-0 w-full bg-[#C8B66C] shadow-lg z-40 p-4 pt-20 pb-10 border-b-4 border-[#332F2E]">
-    {/* <ul class="flex flex-col gap-6 text-center font-bold text-xl text-[#332F2E]">
-      {navItems.map((item) => (
-        <li>
-          <a href={item.href} class="block py-2 hover:bg-white/30 rounded transition-colors">
-            {item.label}
-          </a>
-        </li>
-      ))}
-    </ul>
-    */}
+    {/* <ul class="flex flex-col gap-6 text-center font-bold text-xl text-[#332F2E] mb-8">
+      <li>
+        <a href="/sekigahara01/news" class="block py-2 hover:bg-white/30 rounded transition-colors">
+          News
+        </a>
+      </li>
+    </ul> */}
 
     <div class="flex justify-center">
       <a href="https://x.com/sekigahara01" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity">

@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets';
+import logoImage from '../assets/main-visual.svg';
+
+/* ▼ メニューを一時的に非表示（コメントアウト）
+const navItems = [
+  { href: '/about', label: '開催概要' },
+  { href: '/schedule', label: 'タイムテーブル' },
+  { href: '/speakers', label: 'スピーカー' },
+  { href: '/sponsors', label: 'スポンサー' },
+];
+*/
+
+// パスの取得
+const pathname = Astro.url.pathname;
+const isTopPage = pathname === '/' || pathname === '/sekigahara01/' || pathname === '/sekigahara01';
+---
+
+<header class="relative p-4 w-full max-w-screen-xl mx-auto">
+  
+  <div class="flex items-center justify-between">
+    
+    {
+      isTopPage ? (
+        // トップページ用：左側を埋めるための空要素
+        <div></div>
+      ) : (
+        // 下層ページ用：ロゴと文字
+        <a href="/" class="font-bold text-2xl flex items-center gap-2 text-inherit no-underline hover:opacity-70 transition-opacity z-50 relative">
+          <Image 
+            src={logoImage} 
+            alt="関ケ原Ruby会議01 ロゴ" 
+            class="w-12 h-auto object-contain" 
+          />
+          <span>関ケ原Ruby会議01</span>
+        </a>
+      )
+    }
+
+    {/* <nav class="hidden lg:flex gap-6 font-bold text-[#332F2E]">
+      {navItems.map((item) => (
+        <a href={item.href} class="hover:text-red-700 transition-colors">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    */}
+
+    <button id="menu-btn" class="block lg:hidden z-50 focus:outline-none">
+      <div class="space-y-2">
+        <span class="block w-8 h-0.5 bg-[#332F2E] animate-pulse"></span>
+        <span class="block w-8 h-0.5 bg-[#332F2E] animate-pulse"></span>
+        <span class="block w-8 h-0.5 bg-[#332F2E] animate-pulse"></span>
+      </div>
+    </button>
+
+  </div>
+
+  <nav id="mobile-menu" class="hidden absolute top-0 left-0 w-full bg-[#C8B66C] shadow-lg z-40 p-4 pt-20 pb-10 border-b-4 border-[#332F2E]">
+    {/* <ul class="flex flex-col gap-6 text-center font-bold text-xl text-[#332F2E]">
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href} class="block py-2 hover:bg-white/30 rounded transition-colors">
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    */}
+    
+    <p class="text-center font-bold text-[#332F2E]">準備中</p>
+  </nav>
+
+</header>
+
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Member from '../components/Member.astro';
+
+// チームメンバーのデータ
+const organizers = [
+  {
+    name: 'ydah',
+    role: 'Organizer',
+    sha256Email: 'c3112b24ff1e37758a9fba172a8985cb318125e9fb3b544ecc4214453481570e',
+    githubID: 'ydah',
+    xID: 'ydah_'
+  },
+  {
+    name: 'osyoyu',
+    role: 'Organizer',
+    md5Email: '0a675bac15087f05fbd68411c2a603ce',
+    githubID: 'osyoyu',
+    xID: 'osyoyu'
+  },
+  {
+    name: 'corocn',
+    role: 'Organizer',
+    sha256Email: '2612d4ebd10c734ac8dc2fa3d39c599937f18dd86741ce310cae86e918586c3f',
+    githubID: 'corocn',
+    xID: 'corocn'
+  },
+  {
+    name: 'ex_SOUL',
+    role: 'Organizer',
+    sha256Email: '6d9191ec9b9dbd146f59098650fb23e75915c5436b23cf55183e4ebfb6826c1d',
+    githubID: 'exSOUL',
+    xID: 'ex_SOUL'
+  },
+  {
+    name: 'pndcat',
+    role: 'Organizer',
+    md5Email: '0351727b99b749cc07e5a4601646284d',
+    githubID: 'pndcat',
+    xID: 'pndcat'
+  },
+  {
+    name: 'Pasta-K',
+    role: 'Organizer',
+    sha256Email: 'd26b7681f161045da171235685c5f6b2f0074636d3f67fbf38bb42d20ddfe2b4',
+    githubID: 'pastak',
+    xID: 'pastak'
+  },
+  {
+    name: 'attsumi',
+    role: 'Designer',
+    md5Email: '96803ea99eef888c7f6637f1d3858766',
+    githubID: 'attsumi',
+    xID: 'atttsumi'
+  },
+];
+
+const supporters = [
+  {
+    name: '日本Rubyの会',
+    imageUrl: '/sekigahara01/img-nihon-ruby-no-kai.png',
+    website: 'https://ruby-no-kai.org/'
+  },
+];
+---
+
+<Layout title="Team - 関ケ原Ruby会議01" alignTop={true}>
+  <div class="w-full py-10">
+    <div class="max-w-screen-lg mx-auto">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
+        <div class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider font-sans">
+            Team
+          </h1>
+          <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+        </div>
+
+        <section class="mb-8 md:mb-12">
+          <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-8 text-[#332F2E]">Organizers</h2>
+          <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
+            {organizers.map((member) => (
+              <Member
+                name={member.name}
+                role={member.role}
+                md5Email={member.md5Email}
+                sha256Email={member.sha256Email}
+                githubID={member.githubID}
+                xID={member.xID}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section class="mb-8 md:mb-12">
+          <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-8 text-[#332F2E]">Support</h2>
+          <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
+            {supporters.map((member) => (
+              <Member
+                name={member.name}
+                role={member.role}
+                imageUrl={member.imageUrl}
+                website={member.website}
+              />
+            ))}
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>

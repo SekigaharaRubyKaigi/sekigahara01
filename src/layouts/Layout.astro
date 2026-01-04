@@ -46,11 +46,45 @@ const siteName = "関ケ原Ruby会議01";
     <title>{title}</title>
   </head>
  <body class="bg-[#ddbd58] bg-[url('/sekigahara01/bk.svg')] bg-repeat bg-center text-[#332F2E] min-h-screen flex flex-col font-sans bg-[length:160px] md:bg-[length:160px] xl:bg-[length:240px]">
+
+  <style is:global>
+    /* メンバー画像の共通スタイル（アバター画像のみ） */
+    .member-profile > img {
+      border: 1px solid #e5e7eb; /* gray-200 */
+      border-radius: 1rem; /* rounded-2xl */
+    }
+
+    /* 共通のproseスタイル */
+    .prose a {
+      color: #332F2E;
+      text-decoration: underline;
+    }
+
+    .prose a:hover {
+      opacity: 0.7;
+    }
+
+    .prose ul {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      color: #332F2E;
+    }
+
+    .prose li {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: #332F2E;
+    }
+
+    .prose li::marker {
+      color: #332F2E;
+    }
+  </style>
   
   <Header />
   
   <main class={`flex-grow flex ${alignTop ? 'items-start' : 'items-center'} justify-center w-full`}>
-    <div class="w-full max-w-screen-xl mx-auto">
+    <div class="w-full max-w-screen-xl mx-auto px-4 md:px-8">
       <slot />
     </div>
   </main>

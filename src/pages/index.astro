@@ -5,6 +5,7 @@ import logoImage from '../assets/main-visual.svg';
 import akaKabuto from '../assets/aka-kabutosan.svg';
 import aoKabuto from '../assets/ao-kabutosan.svg';
 import pinBlack from '../assets/pin_black.svg';
+import LinkButton from '../components/LinkButton.astro';
 
 // ▼ ニュース機能の読み込み
 import { getCollection } from 'astro:content';
@@ -120,11 +121,9 @@ const formatDate = (date) => {
         )}
       </div>
 
-        {/* <div class="text-center mt-8">
-          <a href="/sekigahara01/news" class="inline-block border border-[#332F2E] text-[#332F2E] bg-white/80 px-10 py-3 rounded-md font-bold hover:bg-[#332F2E] hover:text-[#C8B66C] transition-colors">
-            もっと見る
-          </a>
-        </div> */}
+        <div class="mt-6">
+          <LinkButton href="/sekigahara01/news" text="もっと見る" variant="secondary" />
+        </div>
       </div>
     </section>
 

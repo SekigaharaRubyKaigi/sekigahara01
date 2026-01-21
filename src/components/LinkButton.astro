@@ -3,7 +3,6 @@ interface Props {
   href: string;
   text?: string;
   variant?: 'primary' | 'secondary';
-  size?: 'medium' | 'large';
   external?: boolean;
   showExternalIcon?: boolean;
 }
@@ -12,22 +11,16 @@ const {
   href,
   text = "詳しくはこちら",
   variant = 'secondary',
-  size = 'medium',
   external = false,
   showExternalIcon = false
 } = Astro.props;
 
 const isExternal = external || showExternalIcon;
 
-// サイズに応じたパディングとテキストサイズ
-const sizeClass = size === 'large'
-  ? "px-10 py-3 text-lg"
-  : "px-6 py-2";
-
 // ボタンのスタイルを variant に応じて変更
 const buttonClass = variant === 'primary'
-  ? `inline-flex items-center gap-1 bg-[#332F2E] text-white ${sizeClass} rounded-md font-bold hover:bg-[#4a4745] transition-all mt-2`
-  : `inline-flex items-center gap-1 border-2 border-[#332F2E] text-[#332F2E] bg-white/80 ${sizeClass} rounded-md font-bold hover:bg-white hover:opacity-70 transition-all mt-2`;
+  ? "inline-flex items-center gap-1 bg-[#332F2E] text-white px-6 py-2 rounded-md font-bold hover:bg-[#4a4745] transition-all mt-2"
+  : "inline-flex items-center gap-1 border border-[#332F2E] text-[#332F2E] bg-white/80 px-6 py-2 rounded-md font-bold hover:bg-white hover:opacity-70 transition-all mt-2";
 ---
 
 <div class="text-center">

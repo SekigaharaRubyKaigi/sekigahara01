@@ -57,7 +57,7 @@ const formatDate = (date) => {
                         {post.data.title}
                       </h3>
                     </div>
-                    <div class="text-[#332F2E] text-base leading-[1.8]">
+                    <div class="text-[#332F2E] text-base leading-[1.8] news-content">
                       <post.Content />
                     </div>
                   </div>
@@ -72,3 +72,18 @@ const formatDate = (date) => {
 
   </div>
 </Layout>
+
+<style is:global>
+  .news-content p a,
+  .news-content a {
+    text-decoration: underline !important;
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: 2px !important;
+    color: #332F2E;
+    transition: opacity 0.2s;
+  }
+  .news-content p a:hover,
+  .news-content a:hover {
+    opacity: 0.7;
+  }
+</style>

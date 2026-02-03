@@ -6,6 +6,7 @@ interface Props {
   size?: 'medium' | 'large';
   external?: boolean;
   showExternalIcon?: boolean;
+  disabled?: boolean;
 }
 
 const {
@@ -14,7 +15,8 @@ const {
   variant = 'secondary',
   size = 'medium',
   external = false,
-  showExternalIcon = false
+  showExternalIcon = false,
+  disabled = false
 } = Astro.props;
 
 const isExternal = external || showExternalIcon;
@@ -28,20 +30,33 @@ const sizeClass = size === 'large'
 const buttonClass = variant === 'primary'
   ? `inline-flex items-center gap-1 bg-[#332F2E] text-white ${sizeClass} rounded-md font-bold hover:bg-[#4a4745] transition-all mt-2 no-underline`
   : `inline-flex items-center gap-1 border-2 border-[#332F2E] text-[#332F2E] bg-white/80 ${sizeClass} rounded-md font-bold hover:bg-white hover:opacity-70 transition-all mt-2 no-underline`;
+
+const disabledClass = disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : "";
 ---
 
 <div class="text-center">
-  <a
-    href={href}
-    target={isExternal ? "_blank" : undefined}
-    rel={isExternal ? "noopener noreferrer" : undefined}
-    class={buttonClass}
-  >
-    {text}
-    {showExternalIcon && (
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-      </svg>
-    )}
-  </a>
+  {disabled ? (
+    <span class={`${buttonClass} ${disabledClass}`} aria-disabled="true">
+      {text}
+      {showExternalIcon && (
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+      )}
+    </span>
+  ) : (
+    <a
+      href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      class={`${buttonClass} ${disabledClass}`}
+    >
+      {text}
+      {showExternalIcon && (
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+        </svg>
+      )}
+    </a>
+  )}
 </div>

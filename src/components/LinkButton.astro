@@ -28,15 +28,15 @@ const sizeClass = size === 'large'
 
 // ボタンのスタイルを variant に応じて変更
 const buttonClass = variant === 'primary'
-  ? `flex items-center gap-1 bg-[#332F2E] text-white ${sizeClass} rounded-md font-bold hover:bg-[#4a4745] transition-all mt-2 no-underline w-full h-[52px]`
-  : `flex items-center gap-1 border-2 border-[#332F2E] text-[#332F2E] bg-white/80 ${sizeClass} rounded-md font-bold hover:bg-white hover:opacity-70 transition-all mt-2 no-underline w-full h-[52px]`;
+  ? `inline-flex items-center gap-1 bg-[#332F2E] text-white ${sizeClass} rounded-md font-bold hover:bg-[#4a4745] transition-all mt-2 no-underline`
+  : `inline-flex items-center gap-1 border-2 border-[#332F2E] text-[#332F2E] bg-white/80 ${sizeClass} rounded-md font-bold hover:bg-white hover:opacity-70 transition-all mt-2 no-underline`;
 
 const disabledClass = disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : "";
 ---
 
 <div class="text-center">
   {disabled ? (
-    <span class={`${buttonClass} ${disabledClass} justify-center`} aria-disabled="true">
+    <span class={`${buttonClass} ${disabledClass}`} aria-disabled="true">
       {text}
       {showExternalIcon && (
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@ const disabledClass = disabled ? "opacity-50 cursor-not-allowed pointer-events-n
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      class={`${buttonClass} ${disabledClass} justify-center`}
+      class={`${buttonClass} ${disabledClass}`}
     >
       {text}
       {showExternalIcon && (

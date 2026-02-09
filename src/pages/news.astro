@@ -74,16 +74,16 @@ const formatDate = (date) => {
 </Layout>
 
 <style is:global>
-  .news-content p a,
-  .news-content a {
+  .news-content p a:not(.no-underline),
+  .news-content a:not(.no-underline) {
     text-decoration: underline !important;
     text-decoration-thickness: 1px !important;
     text-underline-offset: 2px !important;
     color: #332F2E;
     transition: opacity 0.2s;
   }
-  .news-content p a:hover,
-  .news-content a:hover {
+  .news-content p a:not(.no-underline):hover,
+  .news-content a:not(.no-underline):hover {
     opacity: 0.7;
   }
 </style>

@@ -6,6 +6,7 @@ import Footer from '../components/Footer.astro';
 const {
   title,
   alignTop = false,
+  noPadding = false,
   description = "関ケ原Ruby会議01は、天下分け目の地「関ケ原」で開催される地域Ruby会議です。2026年5月30日（土）開催。",
   ogImage = "/sekigahara01/ogp.png"
 } = Astro.props;
@@ -103,7 +104,7 @@ const siteName = "関ケ原Ruby会議01";
   <Header />
   
   <main class={`flex-grow flex ${alignTop ? 'items-start' : 'items-center'} justify-center w-full`}>
-    <div class="w-full max-w-screen-xl mx-auto px-4 md:px-8">
+    <div class={`w-full max-w-screen-xl mx-auto ${noPadding ? '' : 'px-4 md:px-8'}`}>
       <slot />
     </div>
   </main>

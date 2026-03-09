@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { parse } from 'yaml';
+import fs from 'fs';
+import path from 'path';
+
+// YAMLファイルを読み込む
+const yamlPath = path.join(process.cwd(), 'src', 'content', 'sponsors.yml');
+const yamlContent = fs.readFileSync(yamlPath, 'utf-8');
+const data = parse(yamlContent);
+const allSponsors = data.sponsors || [];
+
+// レベル別にグループ化
+const rubySponsors = allSponsors.filter(s => s.tier === 'ruby');
+const goldSponsors = allSponsors.filter(s => s.tier === 'gold');
+const silverSponsors = allSponsors.filter(s => s.tier === 'silver');
+---
+
+<Layout title="Sponsors - 関ケ原Ruby会議01" alignTop={true}>
+  <div class="w-full py-10">
+    <div class="max-w-screen-lg mx-auto">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
+        <div class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider font-sans">
+            Sponsors
+          </h1>
+          <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+        </div>
+
+        <!-- Ruby Sponsors -->
+        {rubySponsors.length > 0 && (
+          <section class="mb-12">
+            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Ruby Sponsors</h2>
+            <div class="grid grid-cols-1 gap-6 md:gap-8">
+              {rubySponsors.map((sponsor) => (
+                <div class="sponsor-flag">
+                  <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 h-full">
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-[240px] h-[240px] flex-shrink-0 border border-gray-300 rounded-2xl p-2">
+                      <img
+                        src={sponsor.image}
+                        alt={sponsor.name}
+                        class="max-h-full max-w-full object-contain"
+                      />
+                    </a>
+                    <div class="flex flex-col flex-grow">
+                      <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="no-underline">
+                        <h3 class="text-xl font-bold text-[#332F2E] mb-2 hover:text-blue-600 transition-colors">
+                          {sponsor.name}
+                        </h3>
+                      </a>
+                      <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline mb-3">
+                        {sponsor.url}
+                      </a>
+                      <p class="text-gray-700 text-base leading-relaxed">
+                        {sponsor.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Gold Sponsors -->
+        {goldSponsors.length > 0 && (
+          <section class="mb-12">
+            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Gold Sponsors</h2>
+            <div class="grid grid-cols-1 gap-6 md:gap-8">
+              {goldSponsors.map((sponsor) => (
+                <div class="sponsor-flag">
+                  <div class="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-6 h-full">
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-[200px] h-[200px] flex-shrink-0 border border-gray-300 rounded-2xl p-2">
+                      <img
+                        src={sponsor.image}
+                        alt={sponsor.name}
+                        class="max-h-full max-w-full object-contain"
+                      />
+                    </a>
+                    <div class="flex flex-col flex-grow">
+                      <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="no-underline">
+                        <h3 class="text-xl font-bold text-[#332F2E] mb-2 hover:text-blue-600 transition-colors">
+                          {sponsor.name}
+                        </h3>
+                      </a>
+                      <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline mb-3">
+                        {sponsor.url}
+                      </a>
+                      <p class="text-gray-700 text-base leading-relaxed">
+                        {sponsor.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- Silver Sponsors -->
+        {silverSponsors.length > 0 && (
+          <section class="mb-12">
+            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Silver Sponsors</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {silverSponsors.map((sponsor) => (
+                <div class="sponsor-flag">
+                  <div class="flex flex-col h-full">
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="mb-4 flex items-center justify-center h-32">
+                      <img
+                        src={sponsor.image}
+                        alt={sponsor.name}
+                        class="max-h-full max-w-full object-contain"
+                      />
+                    </a>
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="no-underline">
+                      <h3 class="text-xl font-bold text-[#332F2E] mb-2 hover:text-blue-600 transition-colors">
+                        {sponsor.name}
+                      </h3>
+                    </a>
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline mb-3">
+                      {sponsor.url}
+                    </a>
+                    <p class="text-gray-700 text-base leading-relaxed">
+                      {sponsor.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {allSponsors.length === 0 && (
+          <p class="text-center text-gray-500">
+            現在、スポンサー情報はありません。
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .sponsor-flag {
+    position: relative;
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .sponsor-flag:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+</style>

@@ -39,3 +39,9 @@ sponsors:
     jobDescription: "「納得できる医療」を、あなたのコードで。Rubyを愛し、社会を良くしたいエンジニアを大募集中です！"
     jobUrl: "https://www.medley.jp"
 
+  - name: "株式会社TwoGate"
+    description: "株式会社TwoGateは柔軟な発想と技術力で最高の共創パートナーを目指すエンジニア集団です。Railsを10年以上活用し、自社開発のローコードソリューションと個別開発を組み合わせたサービス提供を得意としています。 ライブエンタメの現場を快適にするソリューションを複数展開し、主に物販、チケットの現場からデジタル化を推進しています。"
+    url: "https://twogate.com"
+    image: "/sekigahara01/sponsors/20.png"
+    tier: "ruby"
+

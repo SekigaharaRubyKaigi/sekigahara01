@@ -105,7 +105,7 @@ const silverSponsors = allSponsors.filter(s => s.tier === 'silver');
               {silverSponsors.map((sponsor) => (
                 <div class="sponsor-flag">
                   <div class="flex flex-col h-full">
-                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="mb-4 flex items-center justify-center h-32">
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="mb-4 flex items-center justify-center w-[160px] h-[160px] mx-auto border border-gray-300 rounded-2xl p-2">
                       <img
                         src={sponsor.image}
                         alt={sponsor.name}

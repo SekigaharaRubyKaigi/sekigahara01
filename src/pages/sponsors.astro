@@ -21,8 +21,8 @@ const silverSponsors = allSponsors.filter(s => s.tier === 'silver');
     <div class="max-w-screen-lg mx-auto">
       <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
         <div class="mb-12">
-          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider font-sans">
-            Sponsors
+          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
+            スポンサー
           </h1>
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
         </div>
@@ -30,7 +30,7 @@ const silverSponsors = allSponsors.filter(s => s.tier === 'silver');
         <!-- Ruby Sponsors -->
         {rubySponsors.length > 0 && (
           <section class="mb-12">
-            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Ruby Sponsors</h2>
+            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Rubyスポンサー</h2>
             <div class="grid grid-cols-1 gap-6 md:gap-8">
               {rubySponsors.map((sponsor) => (
                 <div class="sponsor-flag">
@@ -65,7 +65,7 @@ const silverSponsors = allSponsors.filter(s => s.tier === 'silver');
         <!-- Gold Sponsors -->
         {goldSponsors.length > 0 && (
           <section class="mb-12">
-            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Gold Sponsors</h2>
+            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Goldスポンサー</h2>
             <div class="grid grid-cols-1 gap-6 md:gap-8">
               {goldSponsors.map((sponsor) => (
                 <div class="sponsor-flag">
@@ -100,7 +100,7 @@ const silverSponsors = allSponsors.filter(s => s.tier === 'silver');
         <!-- Silver Sponsors -->
         {silverSponsors.length > 0 && (
           <section class="mb-12">
-            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Silver Sponsors</h2>
+            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Silverスポンサー</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {silverSponsors.map((sponsor) => (
                 <div class="sponsor-flag">

@@ -6,49 +6,49 @@ import Member from '../components/Member.astro';
 const organizers = [
   {
     name: 'ydah',
-    role: 'Organizer',
+    role: 'オーガナイザー',
     sha256Email: 'c3112b24ff1e37758a9fba172a8985cb318125e9fb3b544ecc4214453481570e',
     githubID: 'ydah',
     xID: 'ydah_'
   },
   {
     name: 'osyoyu',
-    role: 'Organizer',
+    role: 'オーガナイザー',
     md5Email: '0a675bac15087f05fbd68411c2a603ce',
     githubID: 'osyoyu',
     xID: 'osyoyu'
   },
   {
     name: 'corocn',
-    role: 'Organizer',
+    role: 'オーガナイザー',
     sha256Email: '2612d4ebd10c734ac8dc2fa3d39c599937f18dd86741ce310cae86e918586c3f',
     githubID: 'corocn',
     xID: 'corocn'
   },
   {
     name: 'ex_SOUL',
-    role: 'Organizer',
+    role: 'オーガナイザー',
     sha256Email: '6d9191ec9b9dbd146f59098650fb23e75915c5436b23cf55183e4ebfb6826c1d',
     githubID: 'exSOUL',
     xID: 'ex_SOUL'
   },
   {
     name: 'pndcat',
-    role: 'Organizer',
+    role: 'オーガナイザー',
     md5Email: '0351727b99b749cc07e5a4601646284d',
     githubID: 'pndcat',
     xID: 'pndcat'
   },
   {
     name: 'Pasta-K',
-    role: 'Organizer',
+    role: 'オーガナイザー',
     sha256Email: 'd26b7681f161045da171235685c5f6b2f0074636d3f67fbf38bb42d20ddfe2b4',
     githubID: 'pastak',
     xID: 'pastak'
   },
   {
     name: 'attsumi',
-    role: 'Designer',
+    role: 'デザイナー',
     md5Email: '96803ea99eef888c7f6637f1d3858766',
     githubID: 'attsumi',
     xID: 'atttsumi'
@@ -69,14 +69,14 @@ const supporters = [
     <div class="max-w-screen-lg mx-auto">
       <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
         <div class="mb-12">
-          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider font-sans">
-            Team
+          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
+            チーム
           </h1>
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
         </div>
 
         <section class="mb-8 md:mb-12">
-          <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-8 text-[#332F2E]">Organizers</h2>
+          <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-8 text-[#332F2E]">オーガナイザー</h2>
           <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
             {organizers.map((member) => (
               <Member
@@ -92,7 +92,7 @@ const supporters = [
         </section>
 
         <section class="mb-8 md:mb-12">
-          <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-8 text-[#332F2E]">Support</h2>
+          <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-8 text-[#332F2E]">サポート</h2>
           <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
             {supporters.map((member) => (
               <Member

@@ -1,0 +1,320 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { parse } from 'yaml';
+import fs from 'fs';
+import path from 'path';
+
+// YAMLファイルを読み込む
+const yamlPath = path.join(process.cwd(), 'src', 'content', 'speakers.yml');
+let eastSpeakers = [];
+let westSpeakers = [];
+
+try {
+  const yamlContent = fs.readFileSync(yamlPath, 'utf-8');
+  const data = parse(yamlContent);
+  eastSpeakers = data.east || [];
+  westSpeakers = data.west || [];
+} catch (e) {
+  // YAMLファイルがまだ存在しない場合は空配列のまま
+}
+
+// 役職の順序を定義（先鋒から副将の順）
+const roleOrder = ['先鋒', '次鋒', '中堅', '副将'];
+
+// 役職ごとにスピーカーをマッピング
+const getByRole = (speakers, role) => speakers.find(s => s.role === role);
+
+const hasSpeakers = eastSpeakers.length > 0 || westSpeakers.length > 0;
+---
+
+<Layout title="武将 - 関ケ原Ruby会議01" alignTop={true}>
+  <div class="w-full py-10">
+    <div class="max-w-screen-xl mx-auto">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
+        <div class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
+            武将
+          </h1>
+          <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+        </div>
+
+        {hasSpeakers ? (
+          <>
+            <!-- 2カラムテーブル -->
+            <div class="speakers-table">
+              <div class="table-header-row hidden md:grid">
+                <div class="table-header table-header-east">
+                  東軍
+                </div>
+                <div class="table-header table-header-west">
+                  西軍
+                </div>
+              </div>
+
+              {roleOrder.map((role) => {
+                const eastSpeaker = getByRole(eastSpeakers, role);
+                const westSpeaker = getByRole(westSpeakers, role);
+
+                if (!eastSpeaker && !westSpeaker) return null;
+
+                return (
+                  <div class="table-row">
+                    <div class="speaker-cell speaker-cell-east">
+                      {eastSpeaker ? (
+                        <div class="speaker-content">
+                          <img
+                            src={`https://github.com/${eastSpeaker.githubID}.png`}
+                            alt={eastSpeaker.name}
+                            class="w-[100px] h-[100px] md:w-[200px] md:h-[200px] rounded-lg object-cover border border-gray-200 mb-2 md:mb-4"
+                          />
+                          <span class="role-tag role-tag-east">
+                            <span class="md:hidden">東軍</span>{eastSpeaker.role}
+                          </span>
+                          <h3 class="text-sm md:text-xl font-bold text-[#332F2E] mb-1 md:mb-2 break-words">
+                            {eastSpeaker.name}
+                          </h3>
+                          <div class="flex gap-2 md:gap-3 items-center mb-1">
+                            {eastSpeaker.githubID && (
+                              <a
+                                href={`https://github.com/${eastSpeaker.githubID}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-[#332F2E] hover:opacity-70 transition-opacity"
+                              >
+                                <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                              </a>
+                            )}
+                            {eastSpeaker.xID && (
+                              <a
+                                href={`https://x.com/${eastSpeaker.xID}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-[#332F2E] hover:opacity-70 transition-opacity"
+                              >
+                                <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                              </a>
+                            )}
+                          </div>
+                          {eastSpeaker.xID && (
+                            <a
+                              href={`https://x.com/${eastSpeaker.xID}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="hidden md:block text-sm text-[#332F2E] hover:opacity-70 transition-opacity mb-3"
+                            >
+                              @{eastSpeaker.xID}
+                            </a>
+                          )}
+                          <p class="text-gray-700 text-base leading-relaxed text-left w-full">
+                            {eastSpeaker.bio}
+                          </p>
+                        </div>
+                      ) : (
+                        <div class="empty-cell">-</div>
+                      )}
+                    </div>
+
+                    <div class="speaker-cell speaker-cell-west">
+                      {westSpeaker ? (
+                        <div class="speaker-content">
+                          <img
+                            src={`https://github.com/${westSpeaker.githubID}.png`}
+                            alt={westSpeaker.name}
+                            class="w-[100px] h-[100px] md:w-[200px] md:h-[200px] rounded-lg object-cover border border-gray-200 mb-2 md:mb-4"
+                          />
+                          <span class="role-tag role-tag-west">
+                            <span class="md:hidden">西軍</span>{westSpeaker.role}
+                          </span>
+                          <h3 class="text-sm md:text-xl font-bold text-[#332F2E] mb-1 md:mb-2 break-words">
+                            {westSpeaker.name}
+                          </h3>
+                          <div class="flex gap-2 md:gap-3 items-center mb-1">
+                            {westSpeaker.githubID && (
+                              <a
+                                href={`https://github.com/${westSpeaker.githubID}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-[#332F2E] hover:opacity-70 transition-opacity"
+                              >
+                                <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                              </a>
+                            )}
+                            {westSpeaker.xID && (
+                              <a
+                                href={`https://x.com/${westSpeaker.xID}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-[#332F2E] hover:opacity-70 transition-opacity"
+                              >
+                                <svg class="w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 24 24">
+                                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                                </svg>
+                              </a>
+                            )}
+                          </div>
+                          {westSpeaker.xID && (
+                            <a
+                              href={`https://x.com/${westSpeaker.xID}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="hidden md:block text-sm text-[#332F2E] hover:opacity-70 transition-opacity mb-3"
+                            >
+                              @{westSpeaker.xID}
+                            </a>
+                          )}
+                          <p class="text-gray-700 text-base leading-relaxed text-left w-full">
+                            {westSpeaker.bio}
+                          </p>
+                        </div>
+                      ) : (
+                        <div class="empty-cell">-</div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        ) : (
+          <p class="text-center text-gray-500">
+            現在、武将情報はありません。
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .speakers-table {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .table-header-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .table-header {
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .table-header-east {
+    background-color: rgba(240, 38, 38, 0.1);
+    color: #F02626;
+  }
+
+  .table-header-west {
+    background-color: rgba(45, 38, 240, 0.1);
+    color: #2D26F0;
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .table-row {
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .table-row:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .speaker-cell {
+    padding: 0.75rem;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .speaker-cell-east {
+    border-left: 2px solid #F02626;
+  }
+
+  .speaker-cell-west {
+    border-left: 2px solid #2D26F0;
+  }
+
+  @media (min-width: 768px) {
+    .speaker-cell {
+      padding: 1.5rem;
+      border-right: 1px solid #e5e7eb;
+      border-bottom: none;
+    }
+
+    .speaker-cell:last-child {
+      border-right: none;
+    }
+
+    .speaker-cell-east {
+      border-left: none;
+      border-top: 3px solid #F02626;
+    }
+
+    .speaker-cell-west {
+      border-left: none;
+      border-top: 3px solid #2D26F0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .speaker-cell-east {
+      border-top: 3px solid #F02626;
+    }
+
+    .speaker-cell-west {
+      border-top: 3px solid #2D26F0;
+    }
+  }
+
+  .speaker-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .empty-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 150px;
+    color: #9ca3af;
+    font-size: 1.5rem;
+  }
+
+  /* 共通スタイル */
+  .role-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: bold;
+  }
+
+  .role-tag-east {
+    background-color: rgba(240, 38, 38, 0.1);
+    color: #F02626;
+  }
+
+  .role-tag-west {
+    background-color: rgba(45, 38, 240, 0.1);
+    color: #2D26F0;
+  }
+</style>

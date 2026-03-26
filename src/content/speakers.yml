@@ -32,7 +32,7 @@ east:  # 東軍
     bio: "Programmer, work at SmartHR."
 
 west:  # 西軍
-  - name: "森塚 真年@sanfrecce_osaka"
+  - name: "森塚三矢大阪守真年"
     role: "先鋒"
     githubID: "sanfrecce-osaka"
     xID: "sanfrecce_osaka"

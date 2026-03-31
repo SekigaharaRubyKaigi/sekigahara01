@@ -1,0 +1,284 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { parse } from 'yaml';
+import fs from 'fs';
+import path from 'path';
+
+// スケジュールYAMLを読み込む
+const schedulePath = path.join(process.cwd(), 'src', 'content', 'schedule.yml');
+let scheduleItems = [];
+
+try {
+  const scheduleContent = fs.readFileSync(schedulePath, 'utf-8');
+  const scheduleData = parse(scheduleContent);
+  scheduleItems = scheduleData.schedule || [];
+} catch (e) {
+  // ファイルがない場合は空配列
+}
+
+// スピーカーYAMLを読み込む
+const speakersPath = path.join(process.cwd(), 'src', 'content', 'speakers.yml');
+let eastSpeakers = [];
+let westSpeakers = [];
+
+try {
+  const speakersContent = fs.readFileSync(speakersPath, 'utf-8');
+  const speakersData = parse(speakersContent);
+  eastSpeakers = speakersData.east || [];
+  westSpeakers = speakersData.west || [];
+} catch (e) {
+  // ファイルがない場合は空配列
+}
+
+// 軍と役職からスピーカーを取得
+const getSpeaker = (army, role) => {
+  const speakers = army === 'east' ? eastSpeakers : westSpeakers;
+  return speakers.find(s => s.role === role);
+};
+---
+
+<Layout title="スケジュール - 関ケ原Ruby会議01" alignTop={true}>
+  <div class="w-full py-10">
+    <div class="max-w-screen-xl mx-auto">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
+        <div class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
+            スケジュール
+          </h1>
+          <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+        </div>
+
+        {scheduleItems.length > 0 ? (
+          <div class="schedule-table">
+            {scheduleItems.map((item) => {
+              const speaker = item.type === 'talk' ? getSpeaker(item.army, item.role) : null;
+              const armyLabel = item.army === 'east' ? '東軍' : '西軍';
+              const isEast = item.army === 'east';
+
+              return (
+                <div class={`table-row ${item.type === 'talk' ? (isEast ? 'talk-row-east' : 'talk-row-west') : ''}`}>
+                  <div class="time-cell">
+                    <span class="text-sm md:text-base font-bold text-[#332F2E]">
+                      {item.start} - {item.end}
+                    </span>
+                  </div>
+                  <div class="content-cell">
+                    {item.type === 'talk' && speaker ? (
+                      <a
+                        href={`/sekigahara01/talks/${speaker.githubID}`}
+                        class={`talk-card ${isEast ? 'talk-card-east' : 'talk-card-west'}`}
+                      >
+                        <div class="talk-card-inner">
+                          <img
+                            src={`https://github.com/${speaker.githubID}.png`}
+                            alt={speaker.name}
+                            class="talk-avatar"
+                          />
+                          <div class="talk-info">
+                            <span class={`role-tag ${isEast ? 'role-tag-east' : 'role-tag-west'}`}>
+                              {armyLabel} {speaker.role}
+                            </span>
+                            <h3 class="talk-title">{speaker.title}</h3>
+                            <p class="talk-speaker">{speaker.name}</p>
+                          </div>
+                        </div>
+                      </a>
+                    ) : (
+                      <div class="other-content">
+                        <span class="other-title">{item.title}</span>
+                        {item.note && (
+                          <span class="other-note">{item.note}</span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <p class="text-center text-gray-500">
+            現在、スケジュール情報はありません。
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .schedule-table {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .table-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .table-row:last-child {
+    border-bottom: none;
+  }
+
+  @media (min-width: 768px) {
+    .table-row {
+      grid-template-columns: 150px 1fr;
+    }
+  }
+
+  .time-cell {
+    padding: 1rem;
+    background: #f3f4f6; /* gray-100 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  @media (min-width: 768px) {
+    .time-cell {
+      border-bottom: none;
+      border-right: 1px solid #e5e7eb;
+    }
+  }
+
+  .content-cell {
+    padding: 1rem;
+    background: white;
+  }
+
+  /* トークカード */
+  .talk-card {
+    display: block;
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .talk-card:hover {
+    opacity: 0.7;
+  }
+
+  .talk-card-east {
+    background-color: transparent;
+  }
+
+  .talk-card-west {
+    background-color: transparent;
+  }
+
+  .talk-card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .talk-card-inner {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  .talk-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid #e5e7eb;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 768px) {
+    .talk-avatar {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .talk-info {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .talk-info {
+      text-align: left;
+    }
+  }
+
+  .role-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .role-tag-east {
+    background-color: rgba(240, 38, 38, 0.1);
+    color: #F02626;
+  }
+
+  .role-tag-west {
+    background-color: rgba(45, 38, 240, 0.1);
+    color: #2D26F0;
+  }
+
+  .talk-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #332F2E;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 768px) {
+    .talk-title {
+      font-size: 1.125rem;
+    }
+  }
+
+  .talk-speaker {
+    font-size: 0.875rem;
+    color: #332F2E;
+    margin-bottom: 0.5rem;
+  }
+
+
+  /* その他のコンテンツ */
+  .other-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .other-content {
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-start;
+    }
+  }
+
+  .other-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #332F2E;
+  }
+
+  .other-note {
+    font-size: 0.875rem;
+    color: #332F2E;
+  }
+
+</style>

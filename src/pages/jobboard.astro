@@ -10,8 +10,11 @@ const yamlContent = fs.readFileSync(yamlPath, 'utf-8');
 const data = parse(yamlContent);
 const allSponsors = data.sponsors || [];
 
-// 求人情報を持つスポンサーのみをフィルタリング
-const jobSponsors = allSponsors.filter(s => s.jobDescription && s.jobUrl);
+// 求人情報を持つスポンサーのみをフィルタリングし、tier順（ruby → gold → silver）でソート
+const tierOrder = { ruby: 0, gold: 1, silver: 2 };
+const jobSponsors = allSponsors
+  .filter(s => s.jobDescription && s.jobUrl)
+  .sort((a, b) => (tierOrder[a.tier] ?? 3) - (tierOrder[b.tier] ?? 3));
 ---
 
 <Layout title="ジョブボード - 関ケ原Ruby会議01" alignTop={true}>

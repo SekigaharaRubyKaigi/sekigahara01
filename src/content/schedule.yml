@@ -22,7 +22,7 @@ schedule:
     role: "先鋒"
 
   - start: "11:35"
-    end: "12:55"
+    end: "11:55"
     type: "talk"
     army: "east"
     role: "次鋒"

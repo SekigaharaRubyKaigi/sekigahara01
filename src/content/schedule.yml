@@ -10,19 +10,19 @@ schedule:
     title: "オープニング"
 
   - start: "10:40"
-    end: "11:05"
+    end: "11:00"
     type: "talk"
     army: "east"
     role: "先鋒"
 
   - start: "11:05"
-    end: "11:35"
+    end: "11:25"
     type: "talk"
     army: "west"
     role: "先鋒"
 
   - start: "11:35"
-    end: "12:00"
+    end: "12:55"
     type: "talk"
     army: "east"
     role: "次鋒"
@@ -44,12 +44,12 @@ schedule:
     title: "スポンサーLT"
 
   - start: "13:35"
-    end: "14:30"
+    end: "14:20"
     type: "other"
     title: "RubyKaja"
 
   - start: "14:30"
-    end: "14:55"
+    end: "14:50"
     type: "talk"
     army: "east"
     role: "中堅"
@@ -66,7 +66,7 @@ schedule:
     title: "休憩"
 
   - start: "15:45"
-    end: "16:10"
+    end: "16:05"
     type: "talk"
     army: "east"
     role: "副将"

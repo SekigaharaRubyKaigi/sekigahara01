@@ -1,0 +1,14 @@
+---
+interface Props {
+  ja: string;
+  bu: string;
+  as?: string;
+  class?: string;
+}
+
+const { ja, bu, as = 'span' } = Astro.props;
+const className = Astro.props.class;
+const Tag = as;
+---
+
+<Tag class={className} data-busho-ja={ja} data-busho-bu={bu}>{ja}</Tag>

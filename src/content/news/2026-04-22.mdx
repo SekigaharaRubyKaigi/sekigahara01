@@ -1,12 +1,22 @@
 ---
 date: 2026-04-22
 title: "公式イベント「前夜祭」の参加登録を開始しました"
+bushoTitle: "前夜祭参陣の儀、取次を始め候"
 ---
 
 import LinkButton from '../../components/LinkButton.astro';
+import BushoText from '../../components/BushoText.astro';
 
-公式イベント「前夜祭」の参加登録を開始しました。
+<BushoText
+  as="p"
+  ja="公式イベント「前夜祭」の参加登録を開始しました。"
+  bu="公式の陣中催事「前夜祭」につき、参陣の取次を始め候。"
+/>
 
-皆様のご参加をお待ちしております。
+<BushoText
+  as="p"
+  ja="皆様のご参加をお待ちしております。"
+  bu="諸将の御参陣、待ち入り候。"
+/>
 
-<LinkButton href="https://connpass.com/event/391145/" text="公式イベント「前夜祭」に申し込む" variant="secondary" />
+<LinkButton href="https://connpass.com/event/391145/" text="公式イベント「前夜祭」に申し込む" bushoText="前夜祭へ参陣届け出で候" variant="secondary" />

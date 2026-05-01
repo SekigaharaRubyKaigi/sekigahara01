@@ -1,12 +1,22 @@
 ---
 date: 2025-12-18
 title: "大将総選挙、投票受付中"
+bushoTitle: "総大将選定、一札の取次中に候"
 ---
 
 import LinkButton from '../../components/LinkButton.astro';
+import BushoText from '../../components/BushoText.astro';
 
-関ケ原Ruby会議01の「大将総選挙」を開催します！
+<BushoText
+  as="p"
+  ja="関ケ原Ruby会議01の「大将総選挙」を開催します！"
+  bu="関ケ原Ruby会議01の「大将総選挙」を執り行い候。"
+/>
 
-東軍・西軍それぞれの大将にふさわしいと思う方にぜひ一票を！
+<BushoText
+  as="p"
+  ja="東軍・西軍それぞれの大将にふさわしいと思う方にぜひ一票を！"
+  bu="東軍・西軍、それぞれ総大将に相応しき御仁へ一札を投じ候へ。"
+/>
 
-<LinkButton href="https://forms.gle/qz617w2WdUx3Wmw39" text="投票は締め切りました" variant="secondary" disabled={true} />
+<LinkButton href="https://forms.gle/qz617w2WdUx3Wmw39" text="投票は締め切りました" bushoText="一札の取次は閉じ候" variant="secondary" disabled={true} />

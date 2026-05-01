@@ -8,6 +8,7 @@ import pinBlack from '../assets/pin_black.svg';
 import githubIcon from '../assets/github-logo.svg';
 import xIcon from '../assets/x-logo.svg';
 import LinkButton from '../components/LinkButton.astro';
+import BushoText from '../components/BushoText.astro';
 
 // ▼ ニュース機能の読み込み
 import { getCollection } from 'astro:content';
@@ -59,7 +60,7 @@ const formatDate = (date) => {
       </p>
 
       <p class="text-base md:text-xl text-[#332F2E] mb-8">
-        会場: <a href="https://www.town.sekigahara.gifu.jp/2568.htm"
+        <BushoText ja="会場:" bu="御陣所:" /> <a href="https://www.town.sekigahara.gifu.jp/2568.htm"
           target="_blank"
           rel="noopener noreferrer"
           class="hover:opacity-70 transition-opacity underline"
@@ -68,10 +69,10 @@ const formatDate = (date) => {
 
       <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
         <div class="w-[280px] h-[52px] flex items-center justify-center">
-          <LinkButton href="https://ti.to/sekigahara/01" text="本編参加チケット購入" variant="primary" size="large" />
+          <LinkButton href="https://ti.to/sekigahara/01" text="本編参加チケット購入" bushoText="本戦の参陣手形を求む" variant="primary" size="large" />
         </div>
         <div class="w-[280px] h-[52px] flex items-center justify-center">
-          <LinkButton href="https://sponsorships.sekigahara01.saltandmayo.net/conferences/sekigahara01/sponsorship/new" text="スポンサー申し込み" variant="primary" size="large" />
+          <LinkButton href="https://sponsorships.sekigahara01.saltandmayo.net/conferences/sekigahara01/sponsorship/new" text="スポンサー申し込み" bushoText="御支援に名乗り出で候" variant="primary" size="large" />
         </div>
       </div>
     </div>
@@ -79,18 +80,26 @@ const formatDate = (date) => {
     <section id="about" class="max-w-screen-md mx-auto mb-20">
       <div class="bg-white/90 p-10 md:p-16 rounded-xl shadow-lg text-[#332F2E]">
         <div class="mb-8">
-          <h2 class="text-3xl md:text-4xl font-bold text-center tracking-wider">
-            天下分け目の地域Ruby会議
-          </h2>
+          <BushoText
+            as="h2"
+            class="text-3xl md:text-4xl font-bold text-center tracking-wider"
+            ja="天下分け目の地域Ruby会議"
+            bu="天下分け目の地にて地域Ruby会議、開陣"
+          />
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
         </div>
         <div class="text-lg leading-relaxed">
-          <p class="mb-4">
-            関ケ原Ruby会議01は、天下分け目の地「関ケ原」で開催される地域Ruby会議です。
-          </p>
-          <p>
-            歴史ある古戦場で、新たなRubyの歴史を刻みましょう。
-          </p>
+          <BushoText
+            as="p"
+            class="mb-4"
+            ja="関ケ原Ruby会議01は、天下分け目の地「関ケ原」で開催される地域Ruby会議です。"
+            bu="関ケ原Ruby会議01は、天下分け目の地「関ケ原」にて催す地域Ruby会議に候。"
+          />
+          <BushoText
+            as="p"
+            ja="歴史ある古戦場で、新たなRubyの歴史を刻みましょう。"
+            bu="由緒ある古戦場にて、新たなるRubyの軍記を記し候へ。"
+          />
         </div>
       </div>
     </section>
@@ -98,15 +107,18 @@ const formatDate = (date) => {
     <section id="news" class="max-w-screen-md mx-auto mb-20">
       <div class="bg-white/90 p-10 md:p-16 rounded-xl shadow-lg">
         <div class="mb-8">
-          <h2 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
-            お知らせ
-          </h2>
+          <BushoText
+            as="h2"
+            class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider"
+            ja="お知らせ"
+            bu="陣触"
+          />
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
         </div>
 
       <div class="bg-white rounded-xl overflow-hidden">
         {latestNews.length === 0 ? (
-          <p class="p-8 text-center text-gray-500">現在お知らせはありません。</p>
+          <BushoText as="p" class="p-8 text-center text-gray-500" ja="現在お知らせはありません。" bu="新しき陣触、只今これ無く候。" />
         ) : (
           <div class="divide-y divide-gray-200/50">
             {latestNews.map((post) => {
@@ -117,7 +129,11 @@ const formatDate = (date) => {
                       <time class="font-bold text-gray-600 font-sans min-w-[100px]">
                         {formatDate(post.data.date)}
                       </time>
-                      <h3 class="flex-grow font-bold text-[#332F2E] text-lg md:text-xl leading-[1.5]">
+                      <h3
+                        class="flex-grow font-bold text-[#332F2E] text-lg md:text-xl leading-[1.5]"
+                        data-busho-ja={post.data.title}
+                        data-busho-bu={post.data.bushoTitle ?? post.data.title}
+                      >
                         {post.data.title}
                       </h3>
                     </div>
@@ -133,7 +149,7 @@ const formatDate = (date) => {
       </div>
 
         <div class="mt-6">
-          <LinkButton href="/sekigahara01/news" text="もっと見る" variant="secondary" />
+          <LinkButton href="/sekigahara01/news" text="もっと見る" bushoText="陣触をさらに改め候" variant="secondary" />
         </div>
       </div>
     </section>
@@ -141,9 +157,12 @@ const formatDate = (date) => {
     <section id="taisho" class="max-w-screen-md mx-auto mb-20">
       <div class="bg-white/90 p-10 md:p-16 rounded-xl shadow-lg">
         <div class="mb-8">
-          <h2 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
-            大将
-          </h2>
+          <BushoText
+            as="h2"
+            class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider"
+            ja="大将"
+            bu="大将"
+          />
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
         </div>
 

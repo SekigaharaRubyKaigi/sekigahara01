@@ -1,12 +1,22 @@
 ---
 date: 2026-02-28
 title: "本編の参加登録を開始しました"
+bushoTitle: "本戦参陣手形、取次を始め候"
 ---
 
 import LinkButton from '../../components/LinkButton.astro';
+import BushoText from '../../components/BushoText.astro';
 
-本編の参加登録を開始しました。
+<BushoText
+  as="p"
+  ja="本編の参加登録を開始しました。"
+  bu="本戦参陣の取次を始め候。"
+/>
 
-「大名プラン」と「家臣プラン」の2つのチケットをご用意しています！
+<BushoText
+  as="p"
+  ja="「大名プラン」と「家臣プラン」の2つのチケットをご用意しています！"
+  bu="「大名プラン」「家臣プラン」の二様の参陣手形、これを用意仕候。"
+/>
 
-<LinkButton href="https://note.com/sekigahara01/n/nc77e951d210b" text="チケットの詳細について読む" variant="secondary" />
+<LinkButton href="https://note.com/sekigahara01/n/nc77e951d210b" text="チケットの詳細について読む" bushoText="参陣手形の仔細を改む" variant="secondary" />

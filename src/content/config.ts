@@ -5,6 +5,7 @@ const newsCollection = defineCollection({
   schema: z.object({
     date: z.date(),
     title: z.string(),
+    bushoTitle: z.string().optional(),
     externalLink: z.string().url().optional(),
   }),
 });

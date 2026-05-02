@@ -1,14 +1,34 @@
 ---
 date: 2026-01-21
 title: "スポンサー募集を開始しました"
+bushoTitle: "御支援衆、名乗りを募り候"
 ---
 
 import LinkButton from '../../components/LinkButton.astro';
+import BushoText from '../../components/BushoText.astro';
 
-関ケ原Ruby会議01のスポンサー募集を開始しました。
+<BushoText
+  as="p"
+  ja="関ケ原Ruby会議01のスポンサー募集を開始しました。"
+  bu="関ケ原Ruby会議01を支え給う御支援衆の名乗りを募り候。"
+/>
 
-[スポンサー募集要項](https://esa-pages.io/p/sharing/22991/posts/5/5c8a0ffa4e3a289cdb8f.html)をお読みの上、下のボタンよりお申し込みください。
+<p>
+  <a
+    href="https://esa-pages.io/p/sharing/22991/posts/5/5c8a0ffa4e3a289cdb8f.html"
+    data-busho-ja="スポンサー募集要項"
+    data-busho-bu="御支援衆募集の触書"
+  >スポンサー募集要項</a>
+  <BushoText
+    ja="をお読みの上、下のボタンよりお申し込みください。"
+    bu="を改めのうえ、下の印より名乗り出でられ候へ。"
+  />
+</p>
 
-皆様のご支援をお待ちしております。
+<BushoText
+  as="p"
+  ja="皆様のご支援をお待ちしております。"
+  bu="諸将の御支援、待ち入り候。"
+/>
 
-<LinkButton href="https://sponsorships.sekigahara01.saltandmayo.net/conferences/sekigahara01/sponsorship/new" text="スポンサー申し込み" variant="secondary" />
+<LinkButton href="https://sponsorships.sekigahara01.saltandmayo.net/conferences/sekigahara01/sponsorship/new" text="スポンサー申し込み" bushoText="御支援に名乗り出で候" variant="secondary" />

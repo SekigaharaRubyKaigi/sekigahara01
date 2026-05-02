@@ -15,6 +15,17 @@ const navItems = [
 // パスの取得
 const pathname = Astro.url.pathname;
 const isTopPage = pathname === '/' || pathname === '/sekigahara01/' || pathname === '/sekigahara01';
+
+const navItems = [
+  { href: '/sekigahara01/schedule', label: 'スケジュール', bushoLabel: '軍議次第' },
+  { href: '/sekigahara01/events', label: 'イベント', bushoLabel: '陣中催事' },
+  { href: '/sekigahara01/busho', label: '武将', bushoLabel: '武将' },
+  { href: '/sekigahara01/news', label: 'お知らせ', bushoLabel: '陣触' },
+  { href: '/sekigahara01/sponsors', label: 'スポンサー', bushoLabel: '御支援衆' },
+  { href: '/sekigahara01/jobboard', label: 'ジョブボード', bushoLabel: '仕官札場' },
+  { href: '/sekigahara01/team', label: 'チーム', bushoLabel: '本陣衆' },
+  { href: '/sekigahara01/policies', label: 'ポリシー', bushoLabel: '掟書' },
+];
 ---
 
 <header class="relative p-4 w-full max-w-screen-xl mx-auto">
@@ -38,38 +49,12 @@ const isTopPage = pathname === '/' || pathname === '/sekigahara01/' || pathname 
       )
     }
 
-    <div class="flex items-center gap-10 z-50">
-      <a href="/sekigahara01/schedule" class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
-        スケジュール
-      </a>
-
-      <a href="/sekigahara01/events" class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
-        イベント
-      </a>
-
-      <a href="/sekigahara01/busho" class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
-        武将
-      </a>
-
-      <a href="/sekigahara01/news" class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
-        お知らせ
-      </a>
-
-      <a href="/sekigahara01/sponsors" class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
-        スポンサー
-      </a>
-
-      <a href="/sekigahara01/jobboard" class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
-        ジョブボード
-      </a>
-
-      <a href="/sekigahara01/team" class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
-        チーム
-      </a>
-
-      <a href="/sekigahara01/policies" class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
-        ポリシー
-      </a>
+    <div class="flex items-center gap-4 xl:gap-8 z-50">
+      {navItems.map((item) => (
+        <a href={item.href} class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
+          <span data-busho-ja={item.label} data-busho-bu={item.bushoLabel}>{item.label}</span>
+        </a>
+      ))}
 
       <a href="https://x.com/sekigahara01" target="_blank" rel="noopener noreferrer" class="hidden lg:block hover:opacity-70 transition-opacity no-underline">
         <Image
@@ -92,46 +77,13 @@ const isTopPage = pathname === '/' || pathname === '/sekigahara01/' || pathname 
 
   <nav id="mobile-menu" class="hidden absolute top-0 left-0 w-full bg-[#C8B66C] shadow-lg z-40 p-4 pt-20 pb-10 border-b-4 border-[#332F2E]">
     <ul class="flex flex-col gap-6 text-center font-bold text-xl text-[#332F2E] mb-8">
-      <li>
-        <a href="/sekigahara01/schedule" class="nav-link block py-2 hover:bg-white/30 rounded transition-colors no-underline">
-          スケジュール
-        </a>
-      </li>
-      <li>
-        <a href="/sekigahara01/events" class="nav-link block py-2 hover:bg-white/30 rounded transition-colors no-underline">
-          イベント
-        </a>
-      </li>
-      <li>
-        <a href="/sekigahara01/busho" class="nav-link block py-2 hover:bg-white/30 rounded transition-colors no-underline">
-          武将
-        </a>
-      </li>
-      <li>
-        <a href="/sekigahara01/news" class="nav-link block py-2 hover:bg-white/30 rounded transition-colors no-underline">
-          お知らせ
-        </a>
-      </li>
-      <li>
-        <a href="/sekigahara01/sponsors" class="nav-link block py-2 hover:bg-white/30 rounded transition-colors no-underline">
-          スポンサー
-        </a>
-      </li>
-      <li>
-        <a href="/sekigahara01/jobboard" class="nav-link block py-2 hover:bg-white/30 rounded transition-colors no-underline">
-          ジョブボード
-        </a>
-      </li>
-      <li>
-        <a href="/sekigahara01/team" class="nav-link block py-2 hover:bg-white/30 rounded transition-colors no-underline">
-          チーム
-        </a>
-      </li>
-      <li>
-        <a href="/sekigahara01/policies" class="nav-link block py-2 hover:bg-white/30 rounded transition-colors no-underline">
-          ポリシー
-        </a>
-      </li>
+      {navItems.map((item) => (
+        <li>
+          <a href={item.href} class="nav-link block py-2 hover:bg-white/30 rounded transition-colors no-underline">
+            <span data-busho-ja={item.label} data-busho-bu={item.bushoLabel}>{item.label}</span>
+          </a>
+        </li>
+      ))}
     </ul>
 
     <div class="flex justify-center">

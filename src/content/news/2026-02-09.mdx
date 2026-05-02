@@ -1,12 +1,22 @@
 ---
 date: 2026-02-09
 title: "プロポーザル募集を開始しました"
+bushoTitle: "登壇の策、御披露を募り候"
 ---
 
 import LinkButton from '../../components/LinkButton.astro';
+import BushoText from '../../components/BushoText.astro';
 
-関ケ原Ruby会議01のプロポーザル募集を開始しました。
+<BushoText
+  as="p"
+  ja="関ケ原Ruby会議01のプロポーザル募集を開始しました。"
+  bu="関ケ原Ruby会議01にて披露すべき登壇の策、募り候。"
+/>
 
-皆様のご応募をお待ちしております。
+<BushoText
+  as="p"
+  ja="皆様のご応募をお待ちしております。"
+  bu="諸将よりの策、待ち入り候。"
+/>
 
-<LinkButton href="https://forms.gle/XPYmqNGHgE8E6LmZ6" text="応募は締め切りました" variant="secondary" disabled={true} />
+<LinkButton href="https://forms.gle/XPYmqNGHgE8E6LmZ6" text="応募は締め切りました" bushoText="策の取次は閉じ候" variant="secondary" disabled={true} />

@@ -1,14 +1,28 @@
 ---
 date: 2026-02-14
 title: "RubyKaja推薦公募を開始しました"
+bushoTitle: "RubyKaja御推挙の儀、取次を始め候"
 ---
 
 import LinkButton from '../../components/LinkButton.astro';
+import BushoText from '../../components/BushoText.astro';
 
-RubyKajaの推薦公募を開始しました。
+<BushoText
+  as="p"
+  ja="RubyKajaの推薦公募を開始しました。"
+  bu="RubyKajaの御推挙を募り候。"
+/>
 
-RubyKajaは、地域Rubyコミュニティで精力的に活動しているRubyistを表彰する賞です。
+<BushoText
+  as="p"
+  ja="RubyKajaは、地域Rubyコミュニティで精力的に活動しているRubyistを表彰する賞です。"
+  bu="RubyKajaは、地域Rubyの集いにて功あるRubyistを賞する儀に候。"
+/>
 
-皆様からの推薦をお待ちしております。
+<BushoText
+  as="p"
+  ja="皆様からの推薦をお待ちしております。"
+  bu="諸将よりの御推挙、待ち入り候。"
+/>
 
-<LinkButton href="https://forms.gle/5CWBWBritPGEsdGt6" text="応募は締め切りました" variant="secondary" disabled={true} />
+<LinkButton href="https://forms.gle/5CWBWBritPGEsdGt6" text="応募は締め切りました" bushoText="御推挙の取次は閉じ候" variant="secondary" disabled={true} />

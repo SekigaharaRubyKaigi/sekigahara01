@@ -15,7 +15,6 @@
   >
     日
   </button>
-  <span class="language-toggle__separator" aria-hidden="true">|</span>
   <button
     type="button"
     class="language-toggle__button"
@@ -109,24 +108,30 @@
     align-items: center;
     background: rgba(255, 255, 255, 0.86);
     border: 2px solid #332f2e;
-    border-radius: 8px;
-    box-shadow: 0 2px 0 rgba(51, 47, 46, 0.2);
+    border-radius: 24px;
     display: inline-flex;
     min-height: 44px;
-    padding: 2px;
+    overflow: hidden;
   }
 
   .language-toggle__button {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
     align-items: center;
-    border-radius: 5px;
+    align-self: stretch;
+    appearance: none;
+    background: transparent;
+    border: none;
     color: #332f2e;
     cursor: pointer;
     display: inline-flex;
     font-weight: 700;
-    height: 40px;
     justify-content: center;
     line-height: 1;
+    min-height: 40px;
     min-width: 44px;
+    outline: none;
+    padding: 0 16px;
     transition:
       background-color 0.2s ease,
       color 0.2s ease,
@@ -142,16 +147,17 @@
     outline-offset: 2px;
   }
 
+  .language-toggle__button:first-child {
+    margin: -2px 0 -2px -2px;
+  }
+
+  .language-toggle__button:last-child {
+    margin: -2px -2px -2px 0;
+  }
+
   .language-toggle__button[aria-pressed='true'] {
     background: #332f2e;
     color: #ffffff;
   }
 
-  .language-toggle__separator {
-    color: rgba(51, 47, 46, 0.42);
-    font-weight: 700;
-    line-height: 1;
-    padding: 0 1px;
-    user-select: none;
-  }
 </style>

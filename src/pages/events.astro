@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BushoText from '../components/BushoText.astro';
+import LanguageToggle from '../components/LanguageToggle.astro';
 import { parse } from 'yaml';
 import fs from 'fs';
 import path from 'path';
@@ -22,16 +24,30 @@ try {
     <div class="max-w-screen-xl mx-auto">
       <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
         <div class="mb-12">
-          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
-            イベント
-          </h1>
+          <BushoText
+            as="h1"
+            class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider"
+            ja="イベント"
+            bu="陣中催事"
+          />
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+        </div>
+
+        <div class="mb-8 flex justify-center">
+          <LanguageToggle />
         </div>
 
         <div class="day-nav">
           {days.map((day, index) => (
             <>
-              <a href={`#${day.id}`} class="day-nav-link">{day.label}</a>
+              <a
+                href={`#${day.id}`}
+                class="day-nav-link"
+                data-busho-ja={day.label}
+                data-busho-bu={day.bushoLabel ?? day.label}
+              >
+                {day.label}
+              </a>
               {index < days.length - 1 && <span class="day-nav-separator">|</span>}
             </>
           ))}
@@ -42,8 +58,20 @@ try {
             {days.map((day) => (
               <div class="day-section" id={day.id}>
                 <div class="day-header">
-                  <span class="day-label">{day.label}</span>
-                  <span class="day-date">{day.date}</span>
+                  <span
+                    class="day-label"
+                    data-busho-ja={day.label}
+                    data-busho-bu={day.bushoLabel ?? day.label}
+                  >
+                    {day.label}
+                  </span>
+                  <span
+                    class="day-date"
+                    data-busho-ja={day.date}
+                    data-busho-bu={day.bushoDate ?? day.date}
+                  >
+                    {day.date}
+                  </span>
                 </div>
 
                 {day.events && day.events.length > 0 ? (
@@ -56,28 +84,75 @@ try {
                           </div>
 
                           <div class="event-info">
-                            <h2 class="event-title">{event.title}</h2>
-                            <p class="event-organizer">{event.organizer}</p>
+                            <h2
+                              class="event-title"
+                              data-busho-ja={event.title}
+                              data-busho-bu={event.bushoTitle ?? event.title}
+                            >
+                              {event.title}
+                            </h2>
+                            <p
+                              class="event-organizer"
+                              data-busho-ja={event.organizer}
+                              data-busho-bu={event.bushoOrganizer ?? event.organizer}
+                            >
+                              {event.organizer}
+                            </p>
+
+                            {event.description && (
+                              <p
+                                class="event-description"
+                                data-busho-ja={event.description}
+                                data-busho-bu={event.bushoDescription ?? event.description}
+                              >
+                                {event.description}
+                              </p>
+                            )}
 
                             <div class="event-details">
                               <div class="detail-row">
-                                <span class="detail-label">時間</span>
-                                <span class="detail-value">{event.time}</span>
+                                <span class="detail-label" data-busho-ja="時間" data-busho-bu="刻限">時間</span>
+                                <span
+                                  class="detail-value"
+                                  data-busho-ja={event.time}
+                                  data-busho-bu={event.bushoTime ?? event.time}
+                                >
+                                  {event.time}
+                                </span>
                               </div>
                               <div class="detail-row">
-                                <span class="detail-label">参加費</span>
-                                <span class="detail-value">{event.price}</span>
+                                <span class="detail-label" data-busho-ja="参加費" data-busho-bu="兵糧料">参加費</span>
+                                <span
+                                  class="detail-value"
+                                  data-busho-ja={event.price}
+                                  data-busho-bu={event.bushoPrice ?? event.price}
+                                >
+                                  {event.price}
+                                </span>
                               </div>
                               {event.capacity && (
                                 <div class="detail-row">
-                                  <span class="detail-label">定員</span>
-                                  <span class="detail-value">{event.capacity}</span>
+                                  <span class="detail-label" data-busho-ja="定員" data-busho-bu="兵数">定員</span>
+                                  <span
+                                    class="detail-value"
+                                    data-busho-ja={event.capacity}
+                                    data-busho-bu={event.bushoCapacity ?? event.capacity}
+                                  >
+                                    {event.capacity}
+                                  </span>
                                 </div>
                               )}
                               <div class="detail-row">
-                                <span class="detail-label">会場</span>
+                                <span class="detail-label" data-busho-ja="会場" data-busho-bu="御陣所">会場</span>
                                 <span class="detail-value">
-                                  <a href={event.venueUrl} target="_blank" rel="noopener noreferrer" class="venue-link">
+                                  <a
+                                    href={event.venueUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="venue-link"
+                                    data-busho-ja={event.venue}
+                                    data-busho-bu={event.bushoVenue ?? event.venue}
+                                  >
                                     {event.venue}
                                   </a>
                                 </span>
@@ -87,7 +162,12 @@ try {
 
                           <div class="event-action">
                             <a href={event.registrationUrl} target="_blank" rel="noopener noreferrer" class="registration-button">
-                              <span>{event.registrationLabel}</span>
+                              <span
+                                data-busho-ja={event.registrationLabel}
+                                data-busho-bu={event.bushoRegistrationLabel ?? event.registrationLabel}
+                              >
+                                {event.registrationLabel}
+                              </span>
                             </a>
                           </div>
                         </div>
@@ -97,7 +177,11 @@ try {
                 ) : (
                   <div class="day-card">
                     <div class="no-events">
-                      <p>イベントはありません。関連イベントが決まり次第、このページでお知らせします。</p>
+                      <BushoText
+                        as="p"
+                        ja="イベントはありません。関連イベントが決まり次第、このページでお知らせします。"
+                        bu="只今、陣中催事の触れはござらぬ。新たな催し定まり次第、この場にて告げ知らせ候。"
+                      />
                     </div>
                   </div>
                 )}
@@ -105,9 +189,12 @@ try {
             ))}
           </div>
         ) : (
-          <p class="text-center text-gray-500">
-            現在、イベント情報はありません。
-          </p>
+          <BushoText
+            as="p"
+            class="text-center text-gray-500"
+            ja="現在、イベント情報はありません。"
+            bu="只今、陣中催事の報せはござらぬ。"
+          />
         )}
       </div>
     </div>
@@ -250,6 +337,13 @@ try {
   .event-organizer {
     font-size: 1rem;
     color: #666;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .event-description {
+    color: #332F2E;
+    font-size: 0.95rem;
+    line-height: 1.7;
     margin: 0 0 0.5rem 0;
   }
 

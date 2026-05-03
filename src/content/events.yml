@@ -47,7 +47,7 @@ days:
         venueUrl: "https://maps.app.goo.gl/HH619r9Tk8YSfCQT7"
         registrationUrl: "https://ti.to/sekigahara/01"
         registrationLabel: "本編チケットを購入"
-        bushoRegistrationLabel: "本戦の参陣手形を求む"
+        bushoRegistrationLabel: "参陣手形を求む"
 
       - title: "宴"
         bushoTitle: "勝鬨の宴"

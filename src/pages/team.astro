@@ -8,6 +8,7 @@ import LanguageToggle from '../components/LanguageToggle.astro';
 const organizers = [
   {
     name: 'ydah',
+    bushoName: '平髙田河内守構文解析丸雄大',
     role: 'オーガナイザー',
     bushoRole: '運営奉行',
     sha256Email: 'c3112b24ff1e37758a9fba172a8985cb318125e9fb3b544ecc4214453481570e',
@@ -16,6 +17,7 @@ const organizers = [
   },
   {
     name: 'osyoyu',
+    bushoName: '北条有友相模守計量大輔',
     role: 'オーガナイザー',
     bushoRole: '運営奉行',
     md5Email: '0a675bac15087f05fbd68411c2a603ce',
@@ -24,6 +26,7 @@ const organizers = [
   },
   {
     name: 'corocn',
+    bushoName: '平土屋美濃守心呂之助貴裕',
     role: 'オーガナイザー',
     bushoRole: '運営奉行',
     sha256Email: '2612d4ebd10c734ac8dc2fa3d39c599937f18dd86741ce310cae86e918586c3f',
@@ -32,6 +35,7 @@ const organizers = [
   },
   {
     name: 'ex_SOUL',
+    bushoName: '橘江崎不破関守魂之丞宗瑠',
     role: 'オーガナイザー',
     bushoRole: '運営奉行',
     sha256Email: '6d9191ec9b9dbd146f59098650fb23e75915c5436b23cf55183e4ebfb6826c1d',
@@ -40,6 +44,7 @@ const organizers = [
   },
   {
     name: 'pndcat',
+    bushoName: '源名渡山武蔵守熊猫猫丸夏子',
     role: 'オーガナイザー',
     bushoRole: '運営奉行',
     md5Email: '0351727b99b749cc07e5a4601646284d',
@@ -56,6 +61,7 @@ const organizers = [
   },
   {
     name: 'attsumi',
+    bushoName: '藤原渥美三河守山吹色優香',
     role: 'デザイナー',
     bushoRole: '意匠奉行',
     md5Email: '96803ea99eef888c7f6637f1d3858766',
@@ -102,6 +108,7 @@ const supporters = [
             {organizers.map((member) => (
               <Member
                 name={member.name}
+                bushoName={member.bushoName}
                 role={member.role}
                 bushoRole={member.bushoRole}
                 md5Email={member.md5Email}

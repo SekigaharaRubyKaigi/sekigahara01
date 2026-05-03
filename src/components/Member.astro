@@ -1,6 +1,7 @@
 ---
 interface Props {
   name: string;
+  bushoName?: string;
   role?: string;
   bushoRole?: string;
   md5Email?: string;
@@ -11,7 +12,7 @@ interface Props {
   website?: string;
 }
 
-const { name, role, bushoRole, md5Email, sha256Email, imageUrl, githubID, xID, website } = Astro.props;
+const { name, bushoName, role, bushoRole, md5Email, sha256Email, imageUrl, githubID, xID, website } = Astro.props;
 
 // 画像URL (ローカル画像またはGravatar)
 const avatarUrl = imageUrl
@@ -42,7 +43,13 @@ const avatarUrl = imageUrl
       {role}
     </p>
   )}
-  <h3 class="text-xl font-bold text-[#332F2E] mb-2">{name}</h3>
+  <h3
+    class="text-xl font-bold leading-snug break-words text-[#332F2E] mb-2"
+    data-busho-ja={name}
+    data-busho-bu={bushoName ?? name}
+  >
+    {name}
+  </h3>
 
     {(githubID || xID || website) && (
       <div class="flex flex-col gap-2">

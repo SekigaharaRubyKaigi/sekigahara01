@@ -46,9 +46,13 @@ const siteName = "関ケ原Ruby会議01";
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
- <body class="bg-[#ddbd58] bg-[url('/sekigahara01/bk.svg')] bg-repeat bg-center text-[#332F2E] min-h-screen flex flex-col font-sans bg-[length:160px] md:bg-[length:160px] xl:bg-[length:240px]">
+ <body class="bg-[#ddbd58] bg-[url('/sekigahara01/bk.svg')] bg-repeat bg-left-top text-[#332F2E] min-h-screen flex flex-col font-sans bg-[length:160px] md:bg-[length:160px] xl:bg-[length:240px]">
 
   <style is:global>
+    html {
+      scrollbar-gutter: stable;
+    }
+
     /* 全体的なリンクスタイル */
     a {
       text-decoration: underline;
@@ -99,6 +103,7 @@ const siteName = "関ケ原Ruby会議01";
     .prose li::marker {
       color: #332F2E;
     }
+
   </style>
   
   <Header />

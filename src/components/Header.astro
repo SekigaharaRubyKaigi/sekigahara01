@@ -41,9 +41,9 @@ const navItems = [
       />
     </a>
 
-    <div class="flex items-center gap-4 xl:gap-8 z-50">
+    <div class="flex items-center gap-3 xl:gap-8 z-50">
       {navItems.map((item) => (
-        <a href={item.href} class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
+        <a href={item.href} class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline text-[0.875rem]">
           <span data-busho-ja={item.label} data-busho-bu={item.bushoLabel}>{item.label}</span>
         </a>
       ))}

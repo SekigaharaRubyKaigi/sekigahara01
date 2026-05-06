@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="グッズ - 関ケ原Ruby会議01" alignTop={true}>
+  <div class="w-full py-10">
+    <div class="max-w-screen-lg mx-auto">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
+        <div class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
+            グッズ
+          </h1>
+          <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+        </div>
+
+        <section>
+          <h2 class="text-2xl font-bold text-[#332F2E] mb-6">スライドテンプレート</h2>
+
+          <div class="slide-template-card">
+            <div class="slide-thumbnail">
+              <img
+                src="/sekigahara01/goodies/thumb-slide-template.png"
+                alt="スライドテンプレート サムネイル"
+                class="w-full h-auto rounded-lg border border-gray-200"
+              />
+            </div>
+
+            <div class="slide-info">
+              <a
+                href="/sekigahara01/goodies/slide_template_sekigahara01.kth"
+                download
+                class="download-button"
+              >
+                ダウンロードする
+              </a>
+
+              <p class="note-text">
+                ※ このテンプレートは <a
+                  href="https://fonts.google.com/noto/specimen/Noto+Sans+JP"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="note-link"
+                >Noto Sans JP</a> フォントが必要です。
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .slide-template-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  }
+
+  @media (min-width: 1024px) {
+    .slide-template-card {
+      flex-direction: row;
+      align-items: stretch;
+      gap: 2.5rem;
+    }
+
+    .slide-thumbnail {
+      flex: 0 0 50%;
+    }
+
+    .slide-info {
+      flex: 1;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+  }
+
+  .slide-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .download-button {
+    display: inline-block;
+    padding: 0.75rem 2.5rem;
+    background: transparent;
+    color: #332F2E;
+    border: 2px solid #332F2E;
+    border-radius: 9999px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-bottom: 1.25rem;
+  }
+
+  .download-button:hover {
+    background: white;
+    opacity: 0.7;
+  }
+
+  .note-text {
+    font-size: 0.875rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .note-link {
+    color: #0e0aca;
+    text-decoration: underline;
+    transition: opacity 0.2s;
+  }
+
+  .note-link:hover {
+    opacity: 0.7;
+  }
+</style>

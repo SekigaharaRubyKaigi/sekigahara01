@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import logoImage from '../assets/main-visual.svg';
-import xLogo from '../assets/x-logo.svg';
+import xLogo from '../assets/x-logo-circle.svg';
+import noteLogo from '../assets/note-logo.svg';
 
 /* ▼ メニューを一時的に非表示（コメントアウト）
 const navItems = [
@@ -32,37 +33,38 @@ const navItems = [
   
   <div class="flex items-center justify-between">
     
-    {
-      isTopPage ? (
-        // トップページ用：左側を埋めるための空要素
-        <div></div>
-      ) : (
-        // 下層ページ用：ロゴと文字
-        <a href="/sekigahara01/" class="font-bold text-2xl flex items-center gap-2 text-inherit no-underline hover:opacity-70 transition-opacity z-50 relative">
-          <Image 
-            src={logoImage} 
-            alt="関ケ原Ruby会議01 ロゴ" 
-            class="w-12 h-auto object-contain" 
-          />
-          <span>関ケ原Ruby会議01</span>
-        </a>
-      )
-    }
+    <a href="/sekigahara01/" class={`flex items-center no-underline hover:opacity-70 transition-opacity z-50 relative ${isTopPage ? 'opacity-0 pointer-events-none' : ''}`}>
+      <img
+        src="/sekigahara01/logo.svg"
+        alt="関ケ原Ruby会議01 ロゴ"
+        class="h-8 w-auto object-contain"
+      />
+    </a>
 
-    <div class="flex items-center gap-4 xl:gap-8 z-50">
+    <div class="flex items-center gap-3 xl:gap-8 z-50">
       {navItems.map((item) => (
-        <a href={item.href} class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline">
+        <a href={item.href} class="nav-link hidden lg:block font-bold text-[#332F2E] hover:opacity-70 transition-opacity no-underline text-[0.875rem]">
           <span data-busho-ja={item.label} data-busho-bu={item.bushoLabel}>{item.label}</span>
         </a>
       ))}
 
-      <a href="https://x.com/sekigahara01" target="_blank" rel="noopener noreferrer" class="hidden lg:block hover:opacity-70 transition-opacity no-underline">
-        <Image
-          src={xLogo}
-          alt="X"
-          class="w-6 h-6 object-contain"
-        />
-      </a>
+      <div class="hidden lg:flex items-center gap-5">
+        <a href="https://x.com/sekigahara01" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity no-underline">
+          <Image
+            src={xLogo}
+            alt="X"
+            class="w-7 h-7 object-contain"
+          />
+        </a>
+
+        <a href="https://note.com/sekigahara01" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity no-underline">
+          <Image
+            src={noteLogo}
+            alt="note"
+            class="w-7 h-7 object-contain"
+          />
+        </a>
+      </div>
 
       <button id="menu-btn" class="block lg:hidden focus:outline-none">
         <div class="space-y-2">
@@ -86,12 +88,19 @@ const navItems = [
       ))}
     </ul>
 
-    <div class="flex justify-center">
+    <div class="flex justify-center gap-6">
       <a href="https://x.com/sekigahara01" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity no-underline">
         <Image
           src={xLogo}
           alt="X"
-          class="w-8 h-8 object-contain"
+          class="w-11 h-11 object-contain"
+        />
+      </a>
+      <a href="https://note.com/sekigahara01" target="_blank" rel="noopener noreferrer" class="hover:opacity-70 transition-opacity no-underline">
+        <Image
+          src={noteLogo}
+          alt="note"
+          class="w-11 h-11 object-contain"
         />
       </a>
     </div>

@@ -33,17 +33,17 @@ const formatDate = (date) => {
   if (!date) return '';
   return date.toLocaleDateString('ja-JP', {
     year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  }).replace(/\//g, '.'); // 2024/08/05 -> 2024.08.05
+    month: 'long',
+    day: 'numeric'
+  });
 };
 ---
 
 <Layout title="関ケ原Ruby会議01">
   <div class="w-full pb-1">
 
-    <div class="text-center py-10 md:py-20">
-      <div class="mx-auto w-80 mb-6 relative">
+    <div class="text-center py-6 md:py-10">
+      <div class="mx-auto w-80 md:w-96 mb-6 relative">
         <Image 
           src={logoImage} 
           alt="関ケ原Ruby会議01メインビジュアル" 
@@ -51,12 +51,12 @@ const formatDate = (date) => {
         />
       </div>
 
-      <h1 class="text-4xl md:text-6xl font-extrabold mb-4 text-[#332F2E]">
-        関ケ原Ruby会議01
+      <h1 class="mb-4 flex justify-center">
+        <img src="/sekigahara01/logo.svg" alt="関ケ原Ruby会議01" class="w-full max-w-xl md:max-w-2xl h-auto" />
       </h1>
 
       <p class="text-2xl md:text-3xl font-bold mb-6 text-[#332F2E]">
-        2026.05.30(土)
+        2026年5月30日(土)
       </p>
 
       <p class="text-base md:text-xl text-[#332F2E] mb-8">
@@ -77,8 +77,8 @@ const formatDate = (date) => {
       </div>
     </div>
 
-    <section id="about" class="max-w-screen-md mx-auto mb-20">
-      <div class="bg-white/90 p-10 md:p-16 rounded-xl shadow-lg text-[#332F2E]">
+    <section id="about" class="max-w-screen-lg mx-auto mt-14 md:mt-10 mb-20">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg text-[#332F2E]">
         <div class="mb-8">
           <BushoText
             as="h2"
@@ -88,10 +88,9 @@ const formatDate = (date) => {
           />
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
         </div>
-        <div class="text-lg leading-relaxed">
+        <div class="text-lg leading-loose">
           <BushoText
             as="p"
-            class="mb-4"
             ja="関ケ原Ruby会議01は、天下分け目の地「関ケ原」で開催される地域Ruby会議です。"
             bu="関ケ原Ruby会議01は、天下分け目の地「関ケ原」にて催す地域Ruby会議に候。"
           />
@@ -104,8 +103,8 @@ const formatDate = (date) => {
       </div>
     </section>
 
-    <section id="news" class="max-w-screen-md mx-auto mb-20">
-      <div class="bg-white/90 p-10 md:p-16 rounded-xl shadow-lg">
+    <section id="news" class="max-w-screen-lg mx-auto mb-20">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
         <div class="mb-8">
           <BushoText
             as="h2"
@@ -154,8 +153,8 @@ const formatDate = (date) => {
       </div>
     </section>
 
-    <section id="taisho" class="max-w-screen-md mx-auto mb-20">
-      <div class="bg-white/90 p-10 md:p-16 rounded-xl shadow-lg">
+    <section id="taisho" class="max-w-screen-lg mx-auto mb-20">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
         <div class="mb-8">
           <BushoText
             as="h2"

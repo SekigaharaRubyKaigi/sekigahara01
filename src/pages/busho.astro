@@ -109,9 +109,7 @@ const hasSpeakers = eastSpeakers.length > 0 || westSpeakers.length > 0;
                               @{eastSpeaker.xID}
                             </a>
                           )}
-                          <p class="text-gray-700 text-base leading-relaxed text-left w-full">
-                            {eastSpeaker.bio}
-                          </p>
+                          <p class="text-gray-700 text-base leading-relaxed text-left w-full" set:html={eastSpeaker.bio.replace(/\n/g, '<br>')} />
                         </div>
                       ) : (
                         <div class="empty-cell">-</div>
@@ -168,9 +166,7 @@ const hasSpeakers = eastSpeakers.length > 0 || westSpeakers.length > 0;
                               @{westSpeaker.xID}
                             </a>
                           )}
-                          <p class="text-gray-700 text-base leading-relaxed text-left w-full">
-                            {westSpeaker.bio}
-                          </p>
+                          <p class="text-gray-700 text-base leading-relaxed text-left w-full" set:html={westSpeaker.bio.replace(/\n/g, '<br>')} />
                         </div>
                       ) : (
                         <div class="empty-cell">-</div>

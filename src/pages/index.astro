@@ -9,6 +9,7 @@ import githubIcon from '../assets/github-logo.svg';
 import xIcon from '../assets/x-logo.svg';
 import LinkButton from '../components/LinkButton.astro';
 import BushoText from '../components/BushoText.astro';
+import LanguageToggle from '../components/LanguageToggle.astro';
 
 // ▼ ニュース機能の読み込み
 import { getCollection } from 'astro:content';
@@ -42,7 +43,7 @@ const formatDate = (date) => {
 <Layout title="関ケ原Ruby会議01">
   <div class="w-full pb-1">
 
-    <div class="text-center py-6 md:py-10">
+    <div class="text-center pt-6 pb-0 md:pt-10 md:pb-0">
       <div class="mx-auto w-80 md:w-96 mb-6 relative">
         <Image 
           src={logoImage} 
@@ -75,16 +76,20 @@ const formatDate = (date) => {
           <LinkButton href="https://sponsorships.sekigahara01.saltandmayo.net/conferences/sekigahara01/sponsorship/new" text="スポンサー申し込み" bushoText="御支援に名乗り出で候" variant="primary" size="large" />
         </div>
       </div>
+
+      <div class="mt-8 flex justify-center">
+        <LanguageToggle />
+      </div>
     </div>
 
-    <section id="about" class="max-w-screen-lg mx-auto mt-14 md:mt-10 mb-20">
+    <section id="about" class="max-w-screen-lg mx-auto mt-4 md:mt-4 mb-20">
       <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg text-[#332F2E]">
         <div class="mb-8">
           <BushoText
             as="h2"
             class="text-3xl md:text-4xl font-bold text-center tracking-wider"
             ja="天下分け目の地域Ruby会議"
-            bu="天下分け目の地にて地域Ruby会議、開陣"
+            bu="天下分け目の地域Ruby会議に候"
           />
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
         </div>
@@ -92,12 +97,12 @@ const formatDate = (date) => {
           <BushoText
             as="p"
             ja="関ケ原Ruby会議01は、天下分け目の地「関ケ原」で開催される地域Ruby会議です。"
-            bu="関ケ原Ruby会議01は、天下分け目の地「関ケ原」にて催す地域Ruby会議に候。"
+            bu="関ケ原Ruby会議01は、天下分け目の地「関ケ原」に本陣を構え、Rubyを語らう諸将参集の場に候。"
           />
           <BushoText
             as="p"
             ja="歴史ある古戦場で、新たなRubyの歴史を刻みましょう。"
-            bu="由緒ある古戦場にて、新たなるRubyの軍記を記し候へ。"
+            bu="いにしえの兵どもが夢の跡にて、いざ新たなるRubyの軍記を刻まん。"
           />
         </div>
       </div>
@@ -181,9 +186,12 @@ const formatDate = (date) => {
                 東軍大将
               </span>
             </div>
-            <h3 class="text-xl md:text-3xl font-bold text-[#332F2E] mb-4">
-              笹田 耕一
-            </h3>
+            <BushoText
+              as="h3"
+              class="text-xl md:text-3xl font-bold text-[#332F2E] mb-4 leading-snug"
+              ja="笹田 耕一"
+              bu="源笹田武蔵守八有丸耕一"
+            />
             <div class="flex items-center justify-center gap-2">
               <a href="https://github.com/ko1" target="_blank" rel="noopener noreferrer" class="inline-flex hover:opacity-70 transition-opacity no-underline">
                 <Image src={githubIcon} alt="GitHub" class="w-7 h-7" style="width: 28px; height: 28px;" />
@@ -198,9 +206,12 @@ const formatDate = (date) => {
                 西軍大将
               </span>
             </div>
-            <h3 class="text-xl md:text-3xl font-bold text-[#332F2E] mb-4">
-              前田 修吾
-            </h3>
+            <BushoText
+              as="h3"
+              class="text-xl md:text-3xl font-bold text-[#332F2E] mb-4 leading-snug"
+              ja="前田 修吾"
+              bu="平前田治部少輔齎文吉修吾"
+            />
             <div class="flex items-center justify-center gap-4">
               <a href="https://github.com/shugo" target="_blank" rel="noopener noreferrer" class="inline-flex hover:opacity-70 transition-opacity no-underline">
                 <Image src={githubIcon} alt="GitHub" class="w-7 h-7" style="width: 28px; height: 28px;" />

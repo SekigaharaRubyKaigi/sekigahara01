@@ -5,7 +5,7 @@ east:  # 東軍
     xID: "kazzix14"
     title: "Sorbetの型がRailsのMVC全てを貫通するまで"
     description: "RailsアプリケーションにSorbetやSteepなどの型システムを導入すると、すぐにある事実に気づきます。既存のコードに丁寧に型を書いているにも関わらず、Controllerのparamsやレスポンス、ViewのERBテンプレート、Stimulusのコードなど、Sorbetの型が効かない部分多数あることです。人間がViewやフロントエンド・ドキュメントを書くときはもちろん、LLMによるコーディングが普及してきた現代においては、型チェックによるフィードバックはさらに重要です。本発表では、Model, View, Controller, さらにはブラウザ上で動作するコードまで、Railsアプリケーションの全レイヤーにSorbetの型を適用するために行った一連の取り組みを紹介します。"
-    bio: "TwoGateという会社でRailsを書いています。Rustと音楽と構造が好きです。"
+    bio: "TwoGateという会社でRailsを書いています。音楽や構造などが好きです。"
 
   - name: "chobishiba"
     role: "次鋒"

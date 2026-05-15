@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import LanguageToggle from '../components/LanguageToggle.astro';
 import { parse } from 'yaml';
 import fs from 'fs';
 import path from 'path';
@@ -36,6 +37,9 @@ const hasSpeakers = eastSpeakers.length > 0 || westSpeakers.length > 0;
             武将
           </h1>
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+          <div class="mt-6 flex justify-center">
+            <LanguageToggle />
+          </div>
         </div>
 
         {hasSpeakers ? (
@@ -70,7 +74,11 @@ const hasSpeakers = eastSpeakers.length > 0 || westSpeakers.length > 0;
                           <span class="role-tag role-tag-east">
                             <span class="md:hidden">東軍</span>{eastSpeaker.role}
                           </span>
-                          <h3 class="text-sm md:text-xl font-bold text-[#332F2E] mb-1 md:mb-2 break-words">
+                          <h3
+                            class="text-sm md:text-xl font-bold text-[#332F2E] mb-1 md:mb-2 break-words"
+                            data-busho-ja={eastSpeaker.name}
+                            data-busho-bu={eastSpeaker.bushoName ?? eastSpeaker.name}
+                          >
                             {eastSpeaker.name}
                           </h3>
                           <div class="flex gap-2 md:gap-3 items-center mb-1">
@@ -109,7 +117,13 @@ const hasSpeakers = eastSpeakers.length > 0 || westSpeakers.length > 0;
                               @{eastSpeaker.xID}
                             </a>
                           )}
-                          <p class="text-gray-700 text-base leading-relaxed text-left w-full" set:html={eastSpeaker.bio.replace(/\n/g, '<br>')} />
+                          <p
+                            class="text-gray-700 text-base leading-relaxed text-left w-full whitespace-pre-line"
+                            data-busho-ja={eastSpeaker.bio}
+                            data-busho-bu={eastSpeaker.bushoBio ?? eastSpeaker.bio}
+                          >
+                            {eastSpeaker.bio}
+                          </p>
                         </div>
                       ) : (
                         <div class="empty-cell">-</div>
@@ -127,7 +141,11 @@ const hasSpeakers = eastSpeakers.length > 0 || westSpeakers.length > 0;
                           <span class="role-tag role-tag-west">
                             <span class="md:hidden">西軍</span>{westSpeaker.role}
                           </span>
-                          <h3 class="text-sm md:text-xl font-bold text-[#332F2E] mb-1 md:mb-2 break-words">
+                          <h3
+                            class="text-sm md:text-xl font-bold text-[#332F2E] mb-1 md:mb-2 break-words"
+                            data-busho-ja={westSpeaker.name}
+                            data-busho-bu={westSpeaker.bushoName ?? westSpeaker.name}
+                          >
                             {westSpeaker.name}
                           </h3>
                           <div class="flex gap-2 md:gap-3 items-center mb-1">
@@ -166,7 +184,13 @@ const hasSpeakers = eastSpeakers.length > 0 || westSpeakers.length > 0;
                               @{westSpeaker.xID}
                             </a>
                           )}
-                          <p class="text-gray-700 text-base leading-relaxed text-left w-full" set:html={westSpeaker.bio.replace(/\n/g, '<br>')} />
+                          <p
+                            class="text-gray-700 text-base leading-relaxed text-left w-full whitespace-pre-line"
+                            data-busho-ja={westSpeaker.bio}
+                            data-busho-bu={westSpeaker.bushoBio ?? westSpeaker.bio}
+                          >
+                            {westSpeaker.bio}
+                          </p>
                         </div>
                       ) : (
                         <div class="empty-cell">-</div>

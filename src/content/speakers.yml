@@ -82,7 +82,7 @@ west:  # 西軍
       頻りに諸国の紅玉党の寄合を巡り交流と見識を深め、枚方城、小山田城における寄合衆の頭目も務め居り候。
 
   - name: "S.H."
-    bushoName: "平毛利石見八郎秀穎"
+    bushoName: "平毛利石見守八郎秀穎"
     role: "次鋒"
     githubID: "S-H-GAMELINKS"
     title: "Termfront: Ruby標準ライブラリだけで作るFPS"

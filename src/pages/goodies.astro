@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BushoText from '../components/BushoText.astro';
+import LanguageToggle from '../components/LanguageToggle.astro';
 ---
 
 <Layout title="グッズ - 関ケ原Ruby会議01" alignTop={true}>
@@ -7,14 +9,26 @@ import Layout from '../layouts/Layout.astro';
     <div class="max-w-screen-lg mx-auto">
       <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
         <div class="mb-12">
-          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
-            グッズ
-          </h1>
+          <BushoText
+            as="h1"
+            class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider"
+            ja="グッズ"
+            bu="陣中土産"
+          />
           <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
         </div>
 
+        <div class="mb-8 flex justify-center">
+          <LanguageToggle />
+        </div>
+
         <section>
-          <h2 class="text-2xl font-bold text-[#332F2E] mb-6">スライドテンプレート</h2>
+          <BushoText
+            as="h2"
+            class="text-2xl font-bold text-[#332F2E] mb-6"
+            ja="スライドテンプレート"
+            bu="軍議絵図の雛形"
+          />
 
           <div class="slide-template-card">
             <div class="slide-thumbnail">
@@ -31,16 +45,16 @@ import Layout from '../layouts/Layout.astro';
                 download
                 class="download-button"
               >
-                ダウンロードする
+                <span data-busho-ja="ダウンロードする" data-busho-bu="雛形を拝領する">ダウンロードする</span>
               </a>
 
               <p class="note-text">
-                ※ このテンプレートは <a
+                <span data-busho-ja="※ このテンプレートは " data-busho-bu="※ この軍議絵図は ">※ このテンプレートは </span><a
                   href="https://fonts.google.com/noto/specimen/Noto+Sans+JP"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="note-link"
-                >Noto Sans JP</a> フォントが必要です。
+                >Noto Sans JP</a><span data-busho-ja=" フォントが必要です。" data-busho-bu=" の書体なくしては整い申さず。"> フォントが必要です。</span>
               </p>
             </div>
           </div>

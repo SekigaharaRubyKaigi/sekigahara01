@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { parse } from 'yaml';
+import fs from 'fs';
+import path from 'path';
+
+const yamlPath = path.join(process.cwd(), 'src', 'content', 'daimyo.yml');
+let daimyoList = [];
+
+try {
+  const yamlContent = fs.readFileSync(yamlPath, 'utf-8');
+  const data = parse(yamlContent);
+  daimyoList = data.daimyo || [];
+} catch (e) {
+  // YAMLファイルがまだ存在しない場合は空配列のまま
+}
+---
+
+<Layout title="大名 - 関ケ原Ruby会議01" alignTop={true}>
+  <div class="w-full py-10">
+    <div class="max-w-screen-lg mx-auto">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
+        <div class="mb-12">
+          <h1 class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider">
+            大名
+          </h1>
+          <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+          <p class="text-center text-[#332F2E] mt-6 leading-relaxed">
+            ここ関ヶ原の地に集いしは、天下を動かす大名なり。
+          </p>
+        </div>
+
+        {daimyoList.length > 0 ? (
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6">
+            {daimyoList.map((daimyo) => (
+              <div class="flex flex-col items-start bg-white/60 p-6 md:p-8 rounded-lg shadow-sm">
+                <div class="relative self-center mb-2">
+                  <div class="gradient-border rounded-lg">
+                    <a
+                      href={daimyo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="block w-20 h-20 md:w-24 md:h-24 overflow-hidden rounded-[6px] hover:opacity-70 transition-opacity"
+                    >
+                      <img
+                        src={daimyo.image}
+                        alt={daimyo.name}
+                        class="w-full h-full object-cover"
+                      />
+                    </a>
+                  </div>
+                  <img
+                    src="/sekigahara01/kabuto.svg"
+                    alt="兜"
+                    class="absolute -top-[28px] -right-[28px] md:-top-[33px] md:-right-[33px] w-[55px] h-[55px] md:w-[65px] md:h-[65px] pointer-events-none rotate-[30deg]"
+                  />
+                </div>
+                <p class="text-base font-bold leading-snug break-words text-[#332F2E]">
+                  {daimyo.name}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="text-center text-gray-500">
+            現在、大名情報はありません。
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  @property --border-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .gradient-border {
+    border: 2px solid transparent;
+    background:
+      linear-gradient(white, white) padding-box,
+      linear-gradient(to right, #fc2158, #0e0aca) border-box;
+  }
+
+  .gradient-border:hover {
+    background:
+      linear-gradient(white, white) padding-box,
+      conic-gradient(from var(--border-angle), #fc2158, #0e0aca, #fc2158) border-box;
+    animation: spin-border 1s linear infinite;
+  }
+
+  @keyframes spin-border {
+    to {
+      --border-angle: 360deg;
+    }
+  }
+</style>
+

@@ -2,7 +2,7 @@ schedule:
   - start: "10:00"
     end: "10:30"
     type: "other"
-    title: "会場・受付"
+    title: "開場・受付"
 
   - start: "10:30"
     end: "10:40"

@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BushoText from '../components/BushoText.astro';
+import LanguageToggle from '../components/LanguageToggle.astro';
+---
+
+<Layout title="アクセス - 関ケ原Ruby会議01" alignTop={true}>
+  <div class="w-full py-10">
+    <div class="max-w-screen-lg mx-auto">
+      <div class="bg-white/90 px-4 py-8 md:px-8 md:py-16 lg:px-16 rounded-xl shadow-lg">
+        <div class="mb-12">
+          <BushoText
+            as="h1"
+            class="text-3xl md:text-4xl font-bold text-center text-[#332F2E] tracking-wider"
+            ja="アクセス"
+            bu="陣所案内"
+          />
+          <div class="h-2 w-16 mx-auto mt-4 bg-gradient-to-r from-[#fc2158] to-[#0e0aca]"></div>
+        </div>
+
+        <div class="mb-8 flex justify-center">
+          <LanguageToggle />
+        </div>
+
+        <div class="max-w-2xl mx-auto">
+          <BushoText
+            as="h2"
+            class="text-2xl font-bold text-[#332F2E] mb-8 text-center"
+            ja="関ケ原ふれあいセンター"
+            bu="関ケ原ふれあいセンター"
+          />
+
+          <div class="mb-8">
+            <img
+              src="/sekigahara01/images/fureai-center.jpg"
+              alt="関ケ原ふれあいセンター"
+              class="w-full rounded-lg shadow-md object-cover"
+            />
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://www.town.sekigahara.gifu.jp/2568.htm"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="no-underline flex items-center justify-center gap-2 px-6 py-3 bg-[#332F2E] text-white font-bold rounded-lg hover:opacity-80 transition-opacity"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              <span data-busho-ja="公式ページ" data-busho-bu="陣所の詳細">公式ページ</span>
+            </a>
+            <a
+              href="https://maps.app.goo.gl/4ZgQoWco2nvaN6p16"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="no-underline flex items-center justify-center gap-2 px-6 py-3 border-2 border-[#332F2E] text-[#332F2E] font-bold rounded-lg hover:opacity-70 transition-opacity"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span data-busho-ja="Google Maps" data-busho-bu="陣所への道案内">Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

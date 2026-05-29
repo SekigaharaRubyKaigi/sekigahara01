@@ -14,6 +14,7 @@ const allSponsors = data.sponsors || [];
 const rubySponsors = allSponsors.filter(s => s.tier === 'ruby');
 const goldSponsors = allSponsors.filter(s => s.tier === 'gold');
 const silverSponsors = allSponsors.filter(s => s.tier === 'silver');
+const toolSponsors = allSponsors.filter(s => s.tier === 'tool');
 ---
 
 <Layout title="Sponsors - 関ケ原Ruby会議01" alignTop={true}>
@@ -103,6 +104,38 @@ const silverSponsors = allSponsors.filter(s => s.tier === 'silver');
             <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">Silverスポンサー</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {silverSponsors.map((sponsor) => (
+                <div class="sponsor-flag">
+                  <div class="flex flex-col h-full">
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="mb-4 flex items-center justify-center w-[160px] h-[160px] mx-auto border border-gray-200 rounded-lg p-2">
+                      <img
+                        src={sponsor.image}
+                        alt={sponsor.name}
+                        class="max-h-full max-w-full object-contain"
+                      />
+                    </a>
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="no-underline">
+                      <h3 class="text-xl font-bold text-[#332F2E] mb-2 hover:text-blue-600 transition-colors">
+                        {sponsor.name}
+                      </h3>
+                    </a>
+                    <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="text-sm text-blue-600 hover:underline mb-3">
+                      {sponsor.url}
+                    </a>
+                    <p class="text-gray-700 text-base leading-relaxed">
+                      {sponsor.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {toolSponsors.length > 0 && (
+          <section class="mb-12">
+            <h2 class="text-2xl font-bold text-left text-[#332F2E] mb-6">ツールスポンサー</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {toolSponsors.map((sponsor) => (
                 <div class="sponsor-flag">
                   <div class="flex flex-col h-full">
                     <a href={sponsor.url} target="_blank" rel="noopener noreferrer" class="mb-4 flex items-center justify-center w-[160px] h-[160px] mx-auto border border-gray-200 rounded-lg p-2">
